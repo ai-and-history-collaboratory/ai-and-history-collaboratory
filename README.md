@@ -9,3 +9,16 @@ This collaboratory is a continuation of last the successful December 2024 marine
 The topic of our first online session on Tuesday, December 9th 2025 will be the conceptualisation, design and development of a Socratic research tool powered by Gemini [https://github.com/Addaci/Generative-Lives-Research-App/wiki], and its potential application within historical research.
 
 One of our first asynchronous discussions will be to highlight a set of "burning topics", which members would like to propose for future sessions.
+
+---
+
+Confirmed participants [alphabetical]
+
+*Gavin Beinart-Smollan* |
+*Maurice Brenner* |
+*Abi Cunningham* |
+*Jacob Forward* |
+*Colin Greenstreet (convenor)* |
+*Thiago Krause* |
+*Oren Okhovat* |
+*Mark L. Thompson* |
