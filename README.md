@@ -6,4 +6,4 @@ Depending on how the collaboratory develops, we may identify potential collectiv
 
 This collaboratory is a continuation of last the successful December 2024 marinelives-collaboratory, in terms of its focus on ai and history.
 
-One of our first disucssions will be to highlight a set of "burning topics", which members would like to propose for future sessions.
+One of our first discussions will be to highlight a set of "burning topics", which members would like to propose for future sessions.
