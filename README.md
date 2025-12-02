@@ -138,6 +138,8 @@ See [Chamelio product demo](https://www.youtube.com/watch?v=k_VDUazeftE).
 
 `Cohen, Dan, 'AI and Libraries, Archives, and Museums, Loosely Coupled. A new framework provides a way for cultural heritage institutions to take advantage of the technology with fewer misgivings, and to serve students, scholars, and the public better', Human Ingenuity, August 18, 2025.` Click [here](https://generativehistory.substack.com/p/gemini-3-solves-handwriting-recognition).` 
 
+`Scheinfeldt, Tom. 'Making an AI Frontend for ArchivesSpace. Have you ever wanted to talk with your finding aid?', Blog entry, November 19th 2025.` Click [here](https://foundhistory.org/making-an-ai-frontend-for-archivesspace/)
+
 ---
 
 ### APRIL 2026
