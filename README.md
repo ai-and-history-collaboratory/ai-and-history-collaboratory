@@ -78,7 +78,7 @@ e.g. Yiddish, Armenian, Ottoman Turkish?
 > Setting temperature, thinking level, and media resolution according to transcription strategy
 >> LOW (0.1-0.2), LOW, DEFAULT (Mark Humphries)
 >>> Evidence for settings, fit with transcription strategy, impact on quality of output, and impact on cost of input/output?
->> LOW (0.15 to 0.2), HIGH, DEFAULT (Colin Greenstreet)
+>> LOW (0.15 to 0.2), LOw/HIGH, DEFAULT (Colin Greenstreet)
 >>> Evidence for settings, fit with transcription strategy, impact on quality of output, and impact on cost of input/output
 
 > Are any Google AI Studio console tools relevant to transcription strategy?
@@ -92,7 +92,11 @@ by Colin Greenstreet)
 
 ***Suggested reading***
 
-`Humphries, Mark, 'Gemini 3 Solves Handwriting Recognition and it’s a Bitter Lesson: Testing shows that Gemini 3 has effectively solved handwriting on English texts, one of the oldest problems in AI, achieving expert human levels of performance.', Generative History, November 24th 2025`. Click [here](https://generativehistory.substack.com/p/gemini-3-solves-handwriting-recognition).` 
+`Crosilla G, Klic L, Colavizza G (2025), "Benchmarking large language models for handwritten text recognition". Journal of Documentation, Vol. 81 No. 7 pp. 334–354, doi: https://doi.org/10.1108/JD-03-2025-0082.` Click [here](https://doi.org/10.1108/JD-03-2025-0082)
+
+`Humphries, Mark, 'Gemini 3 Solves Handwriting Recognition and it’s a Bitter Lesson: Testing shows that Gemini 3 has effectively solved handwriting on English texts, one of the oldest problems in AI, achieving expert human levels of performance.', Generative History, November 24th 2025.` Click [here](https://generativehistory.substack.com/p/gemini-3-solves-handwriting-recognition).` 
+
+
 
 ---
 
