@@ -66,16 +66,20 @@ Sharing experimental data for transcription of English High Court of Admiralty d
 
 Contrasting Gemini 3 Pro Preview results with Leo and Transkribus
 
-Sharing experimental data for transcription of primary source handwritten documents used by other Ai + History collaboratory members
+Sharing experimental data for transcription of primary source handwritten documents used by other Ai + History 
+collaboratory members
 
 ```
 FOR DISCUSSION SPECIFICALLY OF HANDS ON EXPERIENCE OF GEMINI 3 PRO PREVIEW
 
-> Developing, iterating, critiquing and refining your transcription strategy with Gemini 3 Pro Preview for your particular use case
+> Developing, iterating, critiquing and refining your transcription strategy with Gemini 3 Pro Preview
+for your particular use case
 * Conducting an initial review of the palaeographical and content challenge of your material
-* Conducting an initial review of available Ground Truth prepared for previous machine transcription, or for scholarly editions
-* Conducting an initial review of past machine transcription output and workflows with other machine transcription services
-and/or softwarefor your material [no one starts a new transcription project without history of past tools & workflows]
+* Conducting an initial review of available Ground Truth prepared for previous machine transcription,
+or for scholarly editions
+* Conducting an initial review of past machine transcription output and workflows with other machine
+transcription services and/or softwarefor your material [no one starts a new transcription project without
+history of past tools & workflows]
 
 > Calling detailed well structured Systems Instructions with short User prompts
 * Keep it simple and heavily visually grounded versus use semantic reading to clean up?
