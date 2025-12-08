@@ -57,6 +57,8 @@ Discussing Gemini 3 Pro Preview's native English language HTR and NER capabiliti
 Discussing Gemini 3 Pro Preview's low resource language HTR and NER capabilities.
 
 > Use case: Armenian; Mixed Russian/Armenian
+>
+> Use case: Scholastic Bengali
 > 
 > Use case: Yiddish
 
