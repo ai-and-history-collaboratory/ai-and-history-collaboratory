@@ -111,8 +111,9 @@ e.g. Armenian, Ottoman Turkish, Yiddish?
 
 `Crosilla G, Klic L, Colavizza G (2025), "Benchmarking large language models for handwritten text recognition". Journal of Documentation, Vol. 81 No. 7 pp. 334–354, doi: https://doi.org/10.1108/JD-03-2025-0082.` Click [here](https://doi.org/10.1108/JD-03-2025-0082)
 
-`Humphries, Mark, 'Gemini 3 Solves Handwriting Recognition and it’s a Bitter Lesson: Testing shows that Gemini 3 has effectively solved handwriting on English texts, one of the oldest problems in AI, achieving expert human levels of performance.', Generative History, November 24th 2025.` Click [here](https://generativehistory.substack.com/p/gemini-3-solves-handwriting-recognition).` 
+`Greenstreet, Colin, 'A New Lens into the Archive: You are in an archive. You find a document in a language you don't understand. You take a photo, input it into Gemini 3 Pro. 60 seconds later you have a transcription, transliteration, and translation', Generative Lives, December 4th 2025.` Click [here](https://generativelives.substack.com/p/a-new-lens-into-the-archive)
 
+`Humphries, Mark, 'Gemini 3 Solves Handwriting Recognition and it’s a Bitter Lesson: Testing shows that Gemini 3 has effectively solved handwriting on English texts, one of the oldest problems in AI, achieving expert human levels of performance.', Generative History, November 24th 2025.` Click [here](https://generativehistory.substack.com/p/gemini-3-solves-handwriting-recognition).` 
 
 
 ---
