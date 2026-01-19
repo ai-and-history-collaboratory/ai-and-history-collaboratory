@@ -30,7 +30,7 @@ Our participants are members of, or associated with, a wide range of universitie
 
 ### DECEMBER 2025
 
-Tuesday, December 9th 2025 @ 4 pm UK time; 5 pm Paris, Berlin, Madrid; 11 am EST; 9 am Mountain time; 8 am Pacific time by ZOOM
+Tuesday, December 9th 2025 @ 4 pm UK time; 5 pm Paris, Berlin, Madrid; 11 am EST; 9 am Mountain time; 8 am Pacific time by ZOOM 
 
 ### Socratic Research Agents
 
@@ -46,18 +46,18 @@ Hands-on testing and improvement of the Agent in real time by members of the Col
 
 ### JANUARY 2026
 
-Tuesday, January 20th 2025 @ 4 pm UK time; 5 pm Paris, Berlin, Madrid; 11 am EST by ZOOM; 9 am Mountain time; 8 am Pacific time by ZOOM
+Tuesday, January 20th 2025 @ 4 pm UK time; 5 pm Paris, Berlin, Madrid; 11 am EST by ZOOM; 9 am Mountain time; 8 am Pacific time by ZOOM [This call will last two hours, with one hour reserved for discussion]
 
 ### HTR/NER
 
 **LLM-enabled HTR and its integration into historical research processes**
 
-Our discussion will focus on the Opening the Ottoman Archives use case
+Our discussion will focus on the Opening the Ottoman Archives use case detailed in Colin Greenstreet's recent Generative Lives article [https://generativelives.substack.com/p/opening-the-ottoman-archive]. The intention is to illustrate and discuss broader principles of LLM-enabled HTR/OCR for low and medium resource languages, but with relevance to all historical language research
 
 * Ottoman Turkish
 * Other Ottoman Empire languages [Albanian, Bulgarian, Greek, Armenian) as well as modern Turkish
 
-and wil briefly address batch HTR for both Ottoman Archives use case and for C17th English Admiralty Court depositions
+and will briefly address batch HTR for both Ottoman Archives use case and for C17th English Admiralty Court depositions
 
 The methodologies we will look at will include:
 
@@ -78,11 +78,13 @@ The topics we will discuss will include:
 
 `Crosilla G, Klic L, Colavizza G (2025), "Benchmarking large language models for handwritten text recognition". Journal of Documentation, Vol. 81 No. 7 pp. 334–354, doi: https://doi.org/10.1108/JD-03-2025-0082.` Click [here](https://doi.org/10.1108/JD-03-2025-0082)
 
-`Greenstreet, Colin, 'Opening the Ottoman Archive. You want to do granular research on the Ottoman Empire and its successor states, but don't read Ottoman Turkish. Do you throw up you hands or look for a new set of powerful tools?', Generative Lives, January 4th 2025.` Click [here]([https://generativelives.substack.com/p/a-new-lens-into-the-archive](https://generativelives.substack.com/p/opening-the-ottoman-archive))
+`Greenstreet, Colin, 'Opening the Ottoman Archive: You want to do granular research on the Ottoman Empire and its successor states, but don't read Ottoman Turkish. Do you throw up you hands or look for a new set of powerful tools?', Generative Lives, January 4th 2025.` Click [here]([https://generativelives.substack.com/p/a-new-lens-into-the-archive](https://generativelives.substack.com/p/opening-the-ottoman-archive))
 
 `Greenstreet, Colin, 'A New Lens into the Archive: You are in an archive. You find a document in a language you don't understand. You take a photo, input it into Gemini 3 Pro. 60 seconds later you have a transcription, transliteration, and translation', Generative Lives, December 4th 2025.` Click [here](https://generativelives.substack.com/p/a-new-lens-into-the-archive)
 
 `Humphries, Mark, 'Gemini 3 Solves Handwriting Recognition and it’s a Bitter Lesson: Testing shows that Gemini 3 has effectively solved handwriting on English texts, one of the oldest problems in AI, achieving expert human levels of performance.', Generative History, November 24th 2025.` Click [here](https://generativehistory.substack.com/p/gemini-3-solves-handwriting-recognition).` 
+
+```
 
 ---
 
