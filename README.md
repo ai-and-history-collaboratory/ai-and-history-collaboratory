@@ -63,7 +63,7 @@ The methodologies we will look at will include:
 
 * HTR Skills markdown files
 * GitHub repository for co-created markdown files by historical research community
-* Two stage HTR (visual capture of digital transcrption vs. transliteration, translation, NER, contextualised summarisation)
+* Two stage HTR (visual capture of digital transcription vs. transliteration, translation, NER, contextualised summarisation)
 * Validation (statistical methods and human in loop)
 
 The topics we will discuss will include:
