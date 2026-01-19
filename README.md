@@ -30,7 +30,7 @@ Our participants are members of, or associated with, a wide range of universitie
 
 ### DECEMBER 2025
 
-Tuesday, December 9th 2025 @ 4 pm UK time; 5 pm Paris, Berlin, Madrid; 11 am EST by ZOOM
+Tuesday, December 9th 2025 @ 4 pm UK time; 5 pm Paris, Berlin, Madrid; 11 am EST; 9 am Mountain time; 8 am Pacific time by ZOOM
 
 ### Socratic Research Agents
 
@@ -46,7 +46,7 @@ Hands-on testing and improvement of the Agent in real time by members of the Col
 
 ### JANUARY 2026
 
-Tuesday, January 20th 2025 @ 4 pm UK time; 5 pm Paris, Berlin, Madrid; 11 am EST by ZOOM
+Tuesday, January 20th 2025 @ 4 pm UK time; 5 pm Paris, Berlin, Madrid; 11 am EST by ZOOM; 9 am Mountain time; 8 am Pacific time by ZOOM
 
 ### HTR/NER
 
