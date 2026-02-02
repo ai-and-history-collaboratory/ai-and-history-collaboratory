@@ -2,9 +2,9 @@
 
 This season's AI + History collaboratory (2025/26) will run for six monthly sessions from December 2025 to May 2026, with a possible History Hackathon in June 2026 to be organised by our Collaboratory, but with a wider group of participants. I am already planning a second season (2026/27), which will run monthly from September 2026 to May 2027.
 
-The topic of our first online session on Tuesday, December 9th 2025 was the conceptualisation, design and development of a Socratic research tool powered by Gemini (https://github.com/Addaci/Generative-Lives-Research-App/wiki), and its potential application within historical research.
+The topic of our first online session on Tuesday, December 9th 2025 was the conceptualisation, design and development of a Socratic research tool powered by Gemini (https://github.com/Addaci/Generative-Lives-Research-App/wiki), and its potential application within historical research. The topic of our second online session on Tuesday, January 20th 2026 was LLM-enabled HTR and its potential integration into historical research processes. It drew on Colin Greenstreet's Substack January 4th 2026 article (https://generativelives.substack.com/p/opening-the-ottoman-archive).
 
-**The topic of our second online session on Tuesday, January 20th 2026 is LLM-enabled HTR and its potential integration into historical research processes.**
+**The topic of our third online session on Tuesday, February 24th 2026 will be "Exploring the Model Context Protocol as an interface with databases and the concept of different types of document agents to work with databases which contain metadata and text".**
 
 ---
 Confirmed participants [alphabetical]
