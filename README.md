@@ -100,7 +100,7 @@ Tuesday, February 24th 2025 @ 4 pm UK time; 5 pm Paris, Berlin, Madrid; 11 am ES
 
 `Anthropic, 'Claude can now connect to your world', Press Release, May 1st 2025.` Click [here](https://claude.com/blog/integrations?utm_source=dancohen&utm_medium=email&utm_campaign=ai-and-libraries-archives-and-museums-loosely-coupled)
 
-`Cohen, Dan, 'AI and Libraries, Archives, and Museums, Loosely Coupled. A new framework provides a way for cultural heritage institutions to take advantage of the technology with fewer misgivings, and to serve students, scholars, and the public better', Human Ingenuity, August 18, 2025.` Click [here](https://generativehistory.substack.com/p/gemini-3-solves-handwriting-recognition).` 
+`Cohen, Dan, 'AI and Libraries, Archives, and Museums, Loosely Coupled. A new framework provides a way for cultural heritage institutions to take advantage of the technology with fewer misgivings, and to serve students, scholars, and the public better', Human Ingenuity, August 18, 2026.` Click [here](https://generativehistory.substack.com/p/gemini-3-solves-handwriting-recognition).` 
 
 `Scheinfeldt, Tom. 'Making an AI Frontend for ArchivesSpace. Have you ever wanted to talk with your finding aid?', Blog entry, November 19th 2025.` Click [here](https://foundhistory.org/making-an-ai-frontend-for-archivesspace/)
 
