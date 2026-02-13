@@ -88,21 +88,41 @@ The topics we will discuss will include:
 
 ### FEBRUARY 2026 [NEXT EVENT]
 
-Tuesday, February 24th 2025 @ 4 pm UK time; 5 pm Paris, Berlin, Madrid; 11 am EST by ZOOM; 9 am Mountain time; 8 am Pacific time by ZOOM [This call will last one hour]
-
 ### Databases
 
-**Exploring the Model Context Protocol as an interface with databases and the concept of different types of document agents to work with databases which contain metadata and text.**
+### Session 3 — Exploring MCP as an Interface with Historical Databases
 
-***Suggested reading***
+**Tuesday, February 24th 2025 @ 4 pm UK time; 5 pm Paris, Berlin, Madrid; 11 am EST by ZOOM; 9 am Mountain time; 8 am Pacific time by ZOOM [This call will last one hour] | 1 hour | Zoom**
 
-`Anonymous, What is the Model Context Protocol (MCP), Technical documentation.` Click [here](https://modelcontextprotocol.io/docs/getting-started/intro?utm_source=dancohen&utm_medium=email&utm_campaign=ai-and-libraries-archives-and-museums-loosely-coupled)
+**Session goals:** Understand why MCP matters for institutional control over historical databases; see how document agents interact with structured and unstructured data; recognise that building an MCP interface for your own databases is within reach.
 
-`Anthropic, 'Claude can now connect to your world', Press Release, May 1st 2025.` Click [here](https://claude.com/blog/integrations?utm_source=dancohen&utm_medium=email&utm_campaign=ai-and-libraries-archives-and-museums-loosely-coupled)
+**I. The Problem (7 min)**
+- Socratic opening: what are your concerns about connecting AI to a historical database? Leading to Dan Cohen's concept of "loose coupling" and the MCP protocol.
 
-`Cohen, Dan, 'AI and Libraries, Archives, and Museums, Loosely Coupled. A new framework provides a way for cultural heritage institutions to take advantage of the technology with fewer misgivings, and to serve students, scholars, and the public better', Human Ingenuity, August 18, 2026.` Click [here](https://generativehistory.substack.com/p/gemini-3-solves-handwriting-recognition).` 
+**II. Three Case Studies (10 min)**
+- Dan Cohen's Northeastern University Library server (search infrastructure), Tom Scheinfeldt's ArchivesSpace server (AI-guided reference interview), and the MarineLives server (semantic queries and close reading). Same protocol, different design choices.
 
-`Scheinfeldt, Tom. 'Making an AI Frontend for ArchivesSpace. Have you ever wanted to talk with your finding aid?', Blog entry, November 19th 2025.` Click [here](https://foundhistory.org/making-an-ai-frontend-for-archivesspace/)
+**III. Agent Taxonomy (6 min)**
+- Three types of document agent derived from the case studies: Discovery Agent, Metadata Agent, and Reading Agent. What tools does each need, and what research questions can each answer?
+
+**IV. Live Demo (22 min)**
+- Part A: Connecting an off-the-shelf MCP server to MarineLives in minutes — what it can and can't do.
+- Part B: The custom MarineLives MCP server — structured biographical queries, quantitative analysis, and close reading of a C17th deposition.
+
+**V. Discussion (12 min)**
+- What databases would you like to connect to? Where does institutional control become gatekeeping? How do agents, assistants, and pipelines fit together?
+
+**VI. Wrap-up (3 min)**
+- Resources for getting started; preview of Session 4 (Search and Discovery, March 2026).
+
+**Suggested pre-reading:**
+
+1. "What is the Model Context Protocol (MCP)" — the official introduction: Click [here](https://modelcontextprotocol.io/docs/getting-started/intro?utm_source=dancohen&utm_medium=email&utm_campaign=ai-and-libraries-archives-and-museums-loosely-coupled)
+2. Anthropic, "Claude can now connect to your world" (May 2025): Click [here](https://claude.com/blog/integrations?utm_source=dancohen&utm_medium=email&utm_campaign=ai-and-libraries-archives-and-museums-loosely-coupled)
+3. Dan Cohen, "AI and Libraries, Archives, and Museums, Loosely Coupled," *Humane Ingenuity* (August 2025): Click [here](https://generativehistory.substack.com/p/gemini-3-solves-handwriting-recognition).` 
+4. Dan Cohen, "The Library's New Entryway," *Humane Ingenuity* (October 2025): Click [here](https://newsletter.dancohen.org/archive/the-librarys-new-entryway/)
+5. Tom Scheinfeldt, "Making an AI Frontend for ArchivesSpace," *Found History* (November 2025): Click [here](https://foundhistory.org/making-an-ai-frontend-for-archivesspace/)
+6. *(Optional)* ProfessionalWiki, "Let AI access your wiki with MCP," MediaWiki Conference (Fall 2025): Click [here](https://www.semantic-mediawiki.org/wiki/MediaWiki_Users_and_Developers_Conference_Fall_2025/Let_AI_access_your_wiki_with_MCP)
 
 ---
 
