@@ -119,7 +119,7 @@ The topics we will discuss will include:
 
 1. "What is the Model Context Protocol (MCP)" — the official introduction: Click [here](https://modelcontextprotocol.io/docs/getting-started/intro?utm_source=dancohen&utm_medium=email&utm_campaign=ai-and-libraries-archives-and-museums-loosely-coupled)
 2. Anthropic, "Claude can now connect to your world" (May 2025): Click [here](https://claude.com/blog/integrations?utm_source=dancohen&utm_medium=email&utm_campaign=ai-and-libraries-archives-and-museums-loosely-coupled)
-3. Dan Cohen, "AI and Libraries, Archives, and Museums, Loosely Coupled," *Humane Ingenuity* (August 2025): Click [here](https://generativehistory.substack.com/p/gemini-3-solves-handwriting-recognition).` 
+3. Dan Cohen, "AI and Libraries, Archives, and Museums, Loosely Coupled," *Humane Ingenuity* (August 2025): Click [here](https://newsletter.dancohen.org/archive/ai-and-libraries-archives-and-museums-loosely-coupled/?utm_source=dancohen&utm_medium=email&utm_campaign=the-librarys-new-entryway)).` 
 4. Dan Cohen, "The Library's New Entryway," *Humane Ingenuity* (October 2025): Click [here](https://newsletter.dancohen.org/archive/the-librarys-new-entryway/)
 5. Tom Scheinfeldt, "Making an AI Frontend for ArchivesSpace," *Found History* (November 2025): Click [here](https://foundhistory.org/making-an-ai-frontend-for-archivesspace/)
 6. *(Optional)* ProfessionalWiki, "Let AI access your wiki with MCP," MediaWiki Conference (Fall 2025): Click [here](https://www.semantic-mediawiki.org/wiki/MediaWiki_Users_and_Developers_Conference_Fall_2025/Let_AI_access_your_wiki_with_MCP)
