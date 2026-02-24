@@ -46,7 +46,7 @@ Hands-on testing and improvement of the Agent in real time by members of the Col
 
 ### JANUARY 2026 [PAST EVENT]
 
-Tuesday, January 20th 2025 @ 4 pm UK time; 5 pm Paris, Berlin, Madrid; 11 am EST by ZOOM; 9 am Mountain time; 8 am Pacific time by ZOOM [This call will last two hours, with one hour reserved for discussion]
+Tuesday, January 20th 2026 @ 4 pm UK time; 5 pm Paris, Berlin, Madrid; 11 am EST by ZOOM; 9 am Mountain time; 8 am Pacific time by ZOOM [This call will last two hours, with one hour reserved for discussion]
 
 ### HTR/NER
 
@@ -86,13 +86,11 @@ The topics we will discuss will include:
 
 ```
 
-### FEBRUARY 2026 [NEXT EVENT]
-
-### Databases
+### FEBRUARY 2026 [PAST EVENT]
 
 ### Session 3 — Exploring MCP as an Interface with Historical Databases
 
-**Tuesday, February 24th 2025 @ 4 pm UK time; 5 pm Paris, Berlin, Madrid; 11 am EST by ZOOM; 9 am Mountain time; 8 am Pacific time by ZOOM [This call will last one hour] | 1 hour | Zoom**
+**Tuesday, February 24th 2026 @ 4 pm UK time; 5 pm Paris, Berlin, Madrid; 11 am EST by ZOOM; 9 am Mountain time; 8 am Pacific time by ZOOM [This call will last one hour] | 1 hour | Zoom**
 
 **Session goals:** Understand why MCP matters for institutional control over historical databases; see how document agents interact with structured and unstructured data; recognise that building an MCP interface for your own databases is within reach.
 
@@ -128,20 +126,11 @@ The topics we will discuss will include:
 
 ### MARCH 2026 [FUTURE EVENT]
 
-### Search/Discovery
+### Session 4 — Cowork for Historians: Skills, Workflows & MCP
 
-**Google search in ai mode, Gemini 3 Pro Preview and Google Scholar Labs as tools to assist in annotating and contextualising historical documents.** 
+**Tuesday, March 31st 2026 @ 4 pm UK time; 5 pm Paris, Berlin, Madrid; 11 am EST by ZOOM; 9 am Mountain time; 8 am Pacific time by ZOOM [This call will last one hour] | 1 hour | Zoom**
 
-How might they be included in manual and/or automated research flows? 
-
-How can forensic, carefully structured search be linked to hard to access, proprietary, firewalled databases? 
-
-How can LLM enabled search interrogate library catalogues?
-
-How can LLM enabled search interrogate large digital history databases like Old Bailey Online and the MarineLives Semantic Media Wiki?
-
-See: [Google search in ai mode](https://search.google/ways-to-search/ai-mode),
-See: [Google Scholar Labs](https://scholar.google.com/scholar_labs/search?hl=en) 
+Details to be confirmed.
 
 ---
 
