@@ -1,0 +1,126 @@
+Meeting assets for Session 3: ai-and-history-collaboratory: MCP & History Databases are ready!
+
+Meeting summary
+
+Key takeaways
+Model Context Protocol (MCP) enables databases/archives to communicate with large language models, allowing for more effective searching and data retrieval
+Three types of MCPs were identified: source-oriented (single archive), task-oriented (searching across multiple sources), and protocol-oriented (working with specific protocols like SPARQL)
+Claude Cowork was demonstrated as a powerful tool for historians, with Colin offering to sponsor Pro subscriptions for collaboratory members
+The group discussed creating skill files to enhance LLM interactions with archives and databases
+Data scraping was identified as a potential method for historians to create their own archives from existing online resources
+The Opening the Ottoman Archives initiative has gained momentum with 7 scholars now involved
+
+Discussed topics
+
+Introduction and Attendance
+
+The meeting began with introductions from all participants.
+
+Details
+Colin: Introduced himself as the founder of the collaboratory, started 15 months ago
+Mark Thompson: Early American historian based in Groningen, Netherlands
+Maurice Brenner: Historian of 18th century Britain
+Lucas Haasis: Research coordinator of the Price Papers, Gerda Henkel fellow at the German Museum
+Dave Brown: Trinity College Dublin, early modern historian
+Jacob Forward: History PhD student at Cambridge studying metaphor extraction from political speeches
+Folami Kolkade: PhD student at Temple University in African American Studies
+Frédérick Madore: Historian working on Islam and Muslims in Francophone West Africa, developing a digital database
+Gavin Beinart-Smollan: Completing PhD at NYU on Yiddish family letter writing, starting a new job as museum curator
+
+Model Context Protocol (MCP) Overview
+Colin explained what MCP is and its potential applications for historians.
+
+Details
+Colin: Described MCP as "a way for a database to communicate with a large language model"
+Colin: Identified three types of MCPs: source-oriented (single archive), task-oriented (searching across multiple sources), and protocol-oriented (working with specific protocols)
+Colin: Demonstrated the Rijksarkivet (Swedish National Archives) MCP implementation
+Mark: Explained his experience researching at the Rijksarkivet, noting how digitization has improved access but finding specific items remains challenging
+
+Dan Cohen's Concept of Loose Coupling
+
+Colin discussed Dan Cohen's work on library metadata and MCPs.
+
+Details
+Colin: Explained Cohen's concern about archival metadata losing context when absorbed into LLMs
+Colin: Described Cohen's implementation of MCP at Northeastern Library, which allows students to query library metadata effectively
+Colin: Showed how this approach provides better results than either traditional library searches or generic LLM queries
+
+Tom Scheinfeldt's Reference Interview Approach
+Colin demonstrated Scheinfeldt's approach to archival queries using an interview-style interaction.
+
+Details
+Colin: Showed Scheinfeldt's "Sorcery Reference Interview" demo that uses an interview approach based on American Library Association standards
+Colin: Explained how the system interviews users to understand their research needs before formulating archive requests
+
+Claude Cowork Demonstration
+Colin demonstrated Claude Cowork's capabilities for historical research.
+
+Details
+Colin: Showed how Claude Cowork can access files in a sandbox environment
+Colin: Demonstrated creating skill files that instruct Claude how to engage with archives
+Colin: Explained his five-phase research methodology implemented as a skill: scoping, systematic term mapping, deep reading, triangulation, and synthesis
+Colin: Showed how Claude can audit and inventory skills and create PowerPoint presentations
+
+Rijksarkivet MCP Implementation
+Colin and Mark demonstrated their implementations of the Rijksarkivet MCP.
+
+Details
+Colin: Showed his implementation using Claude Cowork with custom skill files
+Mark: Demonstrated his implementation using Google Anti-Gravity, which created an HTML interface for the MCP
+Mark: Noted challenges with search results not always returning expected items
+
+Data Scraping Discussion
+The group discussed the potential of data scraping for creating personal archives.
+
+Details
+Mark: Suggested historians could scrape existing online resources to create their own archives
+Jacob: Shared his experience creating a custom archive for a colleague who wanted to preserve data that might not remain accessible
+Maurice: Mentioned potential benefits for improving poorly structured databases like 18th Century Collections Online
+Colin: Cautioned about checking API usage rules to avoid being locked out
+
+Opening the Ottoman Archives Initiative Update
+Colin provided an update on his Ottoman Archives initiative.
+
+Details
+Colin: Reported that 7 scholars are now involved in the initiative
+Colin: Demonstrated an annotation viewer created with 9 hours of work in Claude Cowork
+Colin: Explained his approach of funding the project himself rather than seeking grants to maintain agility
+
+Skills Files for Historians
+The group discussed creating and sharing skill files for historical research.
+
+Details
+Gavin: Suggested creating skill files to demonstrate how to construct MCP servers
+Colin: Explained how skills can be applied to various tasks beyond language processing
+Colin: Described his approach of creating narrow, specific skills that can be iteratively improved
+
+Challenges
+Finding archives with accessible APIs that don't require authentication or have usage limits
+Understanding and implementing MCPs for those without coding experience
+Dealing with poorly structured databases that could benefit from improved search capabilities
+Navigating potential copyright issues when scraping data from commercial databases
+
+Action items
+Colin
+
+Post an 8-page Word document about MCPs to the AI and History Collaboratory GitHub organization
+Share the conversation link from the Rijksarkivet MCP demo
+Change the topic for March to Claude Cowork and potentially sponsor Pro subscriptions for collaboratory members
+Create and share skill files for constructing MCP servers
+Follow up with Folami Kolkade on data scraping techniques
+Complete and share "vibe coding" for explaining skill files to non-coders
+
+All members
+
+Consider joining the AI and History Collaboratory GitHub organization
+Explore the Rijksarkivet MCP as a learning exercise
+Consider building MCPs for archives they're familiar with
+Consider participating in a small collaboratory project to collate skills and work processes for historians
+
+Colin and Mark
+
+Follow up with Frederick about IWAC (Islamic West African Collection)
+
+David
+
+Explore potential for creating an MCP for the Virtual Record Treasury
