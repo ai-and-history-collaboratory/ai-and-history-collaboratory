@@ -14,13 +14,13 @@ Depending on how the collaboratory develops, we may identify potential collectiv
 
 | # | Session | Date | Status |
 |---|---------|------|--------|
-| 1 | [Socratic Research Agents](#session-1--socratic-research-agents) | 9 Dec 2025 | Past |
-| 2 | [HTR/NER](#session-2--htrner) | 20 Jan 2026 | Past |
-| 3 | [Exploring MCP as an Interface with Historical Databases](#session-3--exploring-mcp-as-an-interface-with-historical-databases) | 24 Feb 2026 | Past |
-| 4 | [Cowork for Historians: Skills and Workflows](#session-4--cowork-for-historians-skills-and-workflows) | 31 Mar 2026 | **Upcoming** |
-| 5 | [Simulations](#session-5--simulations) | Apr 2026 | Future |
-| 6 | [Skills/Tools/Knowledge](#session-6--skillstoolsknowledge) | May 2026 | Future |
-| — | [History Hackathon](#history-hackathon) | Jun 2026 | Future |
+| 1 | [Socratic Research Agents](#session-1--socratic-research-agents-past-event) | 9 Dec 2025 | Past |
+| 2 | [HTR/NER](#session-2--htrner-past-event) | 20 Jan 2026 | Past |
+| 3 | [Exploring MCP as an Interface with Historical Databases](#session-3--exploring-mcp-as-an-interface-with-historical-databases-past-event) | 24 Feb 2026 | Past |
+| 4 | [Cowork for Historians: Skills and Workflows](#session-4--cowork-for-historians-skills-and-workflows-upcoming-event) | 31 Mar 2026 | **Upcoming** |
+| 5 | [Simulations](#session-5--simulations-future-event) | Apr 2026 | Future |
+| 6 | [Skills/Tools/Knowledge](#session-6--skillstoolsknowledge-future-event) | May 2026 | Future |
+| — | [History Hackathon](#history-hackathon-future-event) | Jun 2026 | Future |
 
 **Beyond**
 
