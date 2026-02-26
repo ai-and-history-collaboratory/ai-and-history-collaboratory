@@ -163,7 +163,7 @@ Session materials: [Session plan (PDF)](https://github.com/ai-and-history-collab
 **3. Case study: skills for historical research (15 min)** — [Jacob Forward](https://www.hist.cam.ac.uk/people/jacob-forward), University of Cambridge
 
 - Skills for local database interrogation
-- A 2,500-word skill for multi-stage metaphor extraction in PhD research
+- A suite of skills for working with a local corpus of presidential speeches
 - How skills turn the LLM into a processor, with the skill as software
 
 **4. Group work and discussion (15 min)**
