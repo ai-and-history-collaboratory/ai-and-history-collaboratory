@@ -158,7 +158,7 @@ Session materials: [Session plan (PDF)](https://github.com/ai-and-history-collab
 - Building workflows into skills
 - Skills are model-agnostic, but there are merits to Anthropic's implementation
 - Identifying repetitive digital procedures and decomposing complex tasks
-- The historian de-skilling risk — and where *not* to apply skills
+- The risk of de-skilling the historian - where *not* to apply skills
 
 **3. Case study: skills for historical research (15 min)** — [Jacob Forward](https://www.hist.cam.ac.uk/people/jacob-forward), University of Cambridge
 
