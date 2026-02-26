@@ -34,7 +34,7 @@ Depending on how the collaboratory develops, we may identify potential collectiv
 
 ## 2025/26 Season
 
-### Session 1 — Socratic Research Agents
+### Session 1 — Socratic Research Agents [PAST EVENT]
 
 **Tuesday 9 December 2025** · 4 pm UK · 5 pm CET · 11 am EST · 9 am MT · 8 am PT · Zoom
 
@@ -51,7 +51,7 @@ Depending on how the collaboratory develops, we may identify potential collectiv
 
 ---
 
-### Session 2 — HTR/NER
+### Session 2 — HTR/NER [PAST EVENT]
 
 **Tuesday 20 January 2026** · 4 pm UK · 5 pm CET · 11 am EST · 9 am MT · 8 am PT · Zoom · *2 hours (1 hour reserved for discussion)*
 
@@ -93,7 +93,7 @@ Depending on how the collaboratory develops, we may identify potential collectiv
 
 ---
 
-### Session 3 — Exploring MCP as an Interface with Historical Databases
+### Session 3 — Exploring MCP as an Interface with Historical Databases [PAST EVENT]
 
 **Tuesday 24 February 2026** · 4 pm UK · 5 pm CET · 11 am EST · 9 am MT · 8 am PT · Zoom · *1 hour*
 
@@ -134,7 +134,7 @@ Session materials: [Session plan (PDF)](https://github.com/ai-and-history-collab
 
 ---
 
-### Session 4 — Cowork for Historians: Skills and Workflows
+### Session 4 — Cowork for Historians: Skills and Workflows [UPCOMING EVENT]
 
 **Tuesday 31 March 2026** · 4 pm UK · 5 pm CET · 11 am EST · 9 am MT · 8 am PT · Zoom · *1 hour*
 
@@ -195,7 +195,7 @@ Paste this into Claude to create your first skill:
 
 ---
 
-### Session 5 — Simulations
+### Session 5 — Simulations [FUTURE EVENT]
 
 **April 2026** · Date TBC · Zoom · *1 hour*
 
@@ -212,7 +212,7 @@ Members of the collaboratory to suggest ideas for simulations which are bite siz
 
 ---
 
-### Session 6 — Skills/Tools/Knowledge
+### Session 6 — Skills/Tools/Knowledge [FUTURE EVENT]
 
 **May 2026** · Date TBC · Zoom · *1 hour*
 
@@ -241,7 +241,7 @@ Members of the collaboratory to suggest ideas for simulations which are bite siz
 
 ---
 
-### History Hackathon
+### History Hackathon [FUTURE EVENT]
 
 **June 2026** · Format TBC
 
