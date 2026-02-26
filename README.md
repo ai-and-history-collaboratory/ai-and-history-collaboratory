@@ -1,8 +1,8 @@
 # AI + History Collaboratory
 
-**The AI + History Collaboratory is an online forum with synchronous and asynchronous components.** We meet monthly online and maintain the [ai-and-history-collaboratory GitHub repository](https://github.com/ai-and-history-collaboratory/ai-and-history-collaboratory) for asynchronous communication between sessions. This collaboratory is a continuation of the December 2024 MarineLives Collaboratory, in terms of its focus on AI and history. 
+**The AI + History Collaboratory is an online forum with synchronous and asynchronous components.** We meet monthly online and maintain the [ai-and-history-collaboratory GitHub repository](https://github.com/ai-and-history-collaboratory/ai-and-history-collaboratory) for asynchronous communication between sessions. This collaboratory is a continuation of the December 2024 MarineLives Collaboratory, in terms of its focus on AI and history.
 
-Depending on how the collaboratory develops, we may identify potential collective collaboratory projects, or simply share projects of individual members of the collaboratory. The repository has both a wiki and a discussion board. 
+Depending on how the collaboratory develops, we may identify potential collective collaboratory projects, or simply share projects of individual members of the collaboratory. The repository has both a wiki and a discussion board.
 
 **This season's AI + History Collaboratory (2025/26) runs for six monthly sessions from December 2025 to May 2026, with a possible History Hackathon in June 2026. A second season (2026/27) is planned to run monthly from September 2026 to May 2027.**
 
@@ -15,7 +15,7 @@ Depending on how the collaboratory develops, we may identify potential collectiv
 | # | Session | Date | Status |
 |---|---------|------|--------|
 | 1 | [Socratic Research Agents](#session-1--socratic-research-agents) | 9 Dec 2025 | Past |
-| 2 | [HTR/NER](#session-2--htрner) | 20 Jan 2026 | Past |
+| 2 | [HTR/NER](#session-2--htrner) | 20 Jan 2026 | Past |
 | 3 | [Exploring MCP as an Interface with Historical Databases](#session-3--exploring-mcp-as-an-interface-with-historical-databases) | 24 Feb 2026 | Past |
 | 4 | [Cowork for Historians: Skills and Workflows](#session-4--cowork-for-historians-skills-and-workflows) | 31 Mar 2026 | **Upcoming** |
 | 5 | [Simulations](#session-5--simulations) | Apr 2026 | Future |
