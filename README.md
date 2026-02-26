@@ -2,9 +2,9 @@
 
 This season's AI + History collaboratory (2025/26) will run for six monthly sessions from December 2025 to May 2026, with a possible History Hackathon in June 2026 to be organised by our Collaboratory, but with a wider group of participants. I am already planning a second season (2026/27), which will run monthly from September 2026 to May 2027.
 
-The topic of our first online session on Tuesday, December 9th 2025 was the conceptualisation, design and development of a Socratic research tool powered by Gemini (https://github.com/Addaci/Generative-Lives-Research-App/wiki), and its potential application within historical research. The topic of our second online session on Tuesday, January 20th 2026 was LLM-enabled HTR and its potential integration into historical research processes. It drew on Colin Greenstreet's Substack January 4th 2026 article (https://generativelives.substack.com/p/opening-the-ottoman-archive).
+The topic of our first online session on Tuesday, December 9th 2025 was the conceptualisation, design and development of a [Socratic research tool powered by Gemini](https://github.com/Addaci/Generative-Lives-Research-App/wiki), and its potential application within historical research. The topic of our second online session on Tuesday, January 20th 2026 was LLM-enabled HTR and its potential integration into historical research processes. It drew on [Colin Greenstreet's January 4th 2026 Substack article, Opening the Ottoman Archive](https://generativelives.substack.com/p/opening-the-ottoman-archive). The topic of our third online session on Tuesday, February 24th 2026 was [Exploring the Model Context Protocol and Historical databases](https://github.com/ai-and-history-collaboratory/ai-and-history-collaboratory/blob/main/session-3/AI_History_Collaboratory_Session_3_v3.1_24022026.pdf).
 
-**The topic of our third online session on Tuesday, February 24th 2026 will be "Exploring the Model Context Protocol as an interface with databases and the concept of different types of document agents to work with databases which contain metadata and text".**
+**The topic of our fourth online session on Tuedsay, March 31st 2026 will be Cowork for Historians: Skill and Workflows** 
 
 ---
 Confirmed participants [alphabetical]
@@ -126,7 +126,7 @@ The topics we will discuss will include:
 
 ### MARCH 2026 [FUTURE EVENT]
 
-### Session 4 — Cowork for Historians: Skills, Workflows & MCP
+### Session 4 — Cowork for Historians: Skill and Workflows
 
 **Tuesday, March 31st 2026 @ 4 pm UK time; 5 pm Paris, Berlin, Madrid; 11 am EST by ZOOM; 9 am Mountain time; 8 am Pacific time by ZOOM [This call will last one hour] | 1 hour | Zoom**
 
