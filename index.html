@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Historian’s Desktop — Glossary</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&family=Source+Sans+3:wght@400;600&family=Source+Code+Pro:wght@400&display=swap');
+  :root{--bg:#faf8f5;--bg-cluster:#f4f1ec;--bg-entry:#fff;--text:#2c2c2c;--text-secondary:#5a5a5a;--text-muted:#8a8a8a;--accent:#8b5e3c;--accent-bg:#f9f3ed;--border:#ddd5ca;--border-light:#ebe6df;--layer2:#3d6b5e;--layer2-bg:#f2f7f5;--layer3:#5a6880;--layer3-bg:#f3f4f7}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--bg);color:var(--text);font-family:'Source Serif 4',Georgia,serif;font-size:17px;line-height:1.65;max-width:820px;margin:0 auto;padding:40px 24px 80px}
+  .doc-header{margin-bottom:48px;padding-bottom:32px;border-bottom:2px solid var(--accent)}
+  .doc-header h1{font-size:32px;font-weight:700;color:var(--accent);letter-spacing:-0.5px;margin-bottom:8px}
+  .doc-header .subtitle{font-size:18px;color:var(--text-secondary);font-style:italic;margin-bottom:16px}
+  .doc-meta{font-family:'Source Sans 3',sans-serif;font-size:13px;color:var(--text-muted);line-height:1.8}
+  .intro-block{background:#e0d8ce;color:#2c2c2c;padding:20px 24px;margin-bottom:24px;border-radius:6px;font-family:'Source Sans 3',sans-serif;font-size:17px;line-height:1.6}
+  .intro-block strong{color:#8b5e3c}
+  .guide-box{background:var(--accent-bg);border-left:3px solid var(--accent);padding:20px 24px;margin-bottom:40px;font-size:15px;color:var(--text-secondary)}
+  .guide-box strong{color:var(--text)}
+  .legend{display:flex;gap:24px;flex-wrap:wrap;margin-bottom:40px;font-family:'Source Sans 3',sans-serif;font-size:14px}
+  .legend-item{display:flex;align-items:center;gap:8px}
+  .legend-dot{width:12px;height:12px;border-radius:2px;flex-shrink:0}
+  .legend-dot.l1{background:var(--accent)}
+  .legend-dot.l2{background:var(--layer2)}
+  .legend-dot.l3{background:var(--layer3)}
+
+  /* Collapsible clusters */
+  .cluster{margin-bottom:8px}
+  .cluster:last-child{margin-bottom:0}
+  .cluster-toggle{display:none}
+  .cluster-header{background:var(--bg-cluster);border:1px solid var(--border);border-radius:6px;padding:14px 24px;cursor:pointer;transition:all 0.2s ease;display:flex;align-items:center;gap:12px;user-select:none}
+  .cluster-header:hover{background:#ede8e0;border-color:#c8bfb2}
+  .cluster-chevron{font-size:12px;color:var(--accent);transition:transform 0.25s ease;flex-shrink:0;width:16px;text-align:center}
+  .cluster-toggle:checked ~ .cluster-header .cluster-chevron{transform:rotate(90deg)}
+  .cluster-header-text{flex:1}
+  .cluster-header h2{font-size:18px;font-weight:600;color:var(--accent);margin-bottom:1px}
+  .cluster-header .cluster-desc{font-size:13px;color:var(--text-muted);font-style:italic;font-family:'Source Sans 3',sans-serif}
+  .cluster-header .cluster-count{font-family:'Source Sans 3',sans-serif;font-size:12px;color:var(--text-muted);background:#e8e3db;padding:2px 8px;border-radius:10px;flex-shrink:0}
+  .cluster-entries{border:1px solid var(--border);border-top:none;border-radius:0 0 6px 6px;overflow:hidden;max-height:0;opacity:0;transition:max-height 0.01s,opacity 0.2s ease}
+  .cluster-toggle:checked ~ .cluster-entries{max-height:none;opacity:1}
+  .cluster-toggle:checked ~ .cluster-header{border-radius:6px 6px 0 0}
+
+  .entry{border-bottom:1px solid var(--border-light);background:var(--bg-entry)}
+  .entry:last-child{border-bottom:none}
+  .entry-name{font-family:'Source Sans 3',sans-serif;font-size:15px;font-weight:600;color:var(--accent);padding:14px 24px 2px;letter-spacing:0.2px}
+  .plain-english{padding:2px 24px 14px;font-size:16px;color:var(--text)}
+  details{margin:0}
+  summary{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:0.8px;padding:8px 24px;cursor:pointer;list-style:none;display:flex;align-items:center;gap:8px;user-select:none;transition:background 0.15s ease}
+  summary::-webkit-details-marker{display:none}
+  summary::before{content:'\25B8';font-size:11px;transition:transform 0.2s ease;display:inline-block;width:14px;flex-shrink:0}
+  details[open]>summary::before{transform:rotate(90deg)}
+  .layer-content{padding:4px 24px 16px 46px;font-size:15px;line-height:1.7;color:var(--text-secondary)}
+  .layer-content code{font-family:'Source Code Pro',monospace;font-size:13px;background:#f0ede8;padding:1px 5px;border-radius:3px}
+  .layer2-summary{color:var(--layer2)}
+  .layer2-summary:hover{background:var(--layer2-bg)}
+  details[open]>.layer2-summary{background:var(--layer2-bg)}
+  .layer3-summary{color:var(--layer3)}
+  .layer3-summary:hover{background:var(--layer3-bg)}
+  details[open]>.layer3-summary{background:var(--layer3-bg)}
+  .controls{display:flex;gap:12px;margin-bottom:32px;flex-wrap:wrap}
+  .controls button{font-family:'Source Sans 3',sans-serif;font-size:13px;padding:6px 14px;border:1px solid var(--border);border-radius:4px;background:var(--bg-entry);color:var(--text-secondary);cursor:pointer;transition:all 0.15s ease}
+  .controls button:hover{border-color:var(--accent);color:var(--accent)}
+  .search-box{margin-bottom:32px}
+  .search-box input{width:100%;max-width:400px;font-family:'Source Sans 3',sans-serif;font-size:15px;padding:10px 16px;border:1px solid var(--border);border-radius:6px;background:var(--bg-entry);color:var(--text);outline:none;transition:border-color 0.2s ease}
+  .search-box input:focus{border-color:var(--accent)}
+  .search-box input::placeholder{color:var(--text-muted)}
+  .search-count{font-family:'Source Sans 3',sans-serif;font-size:13px;color:var(--text-muted);margin-top:6px;min-height:20px}
+  mark.search-highlight{background:#f5d9a0;color:var(--text);padding:0 1px;border-radius:2px}
+  .layer-has-match::after{content:"\2022";margin-left:6px;color:var(--accent);font-size:10px}
+  .entry.hidden{display:none}
+  .cluster.hidden{display:none}
+  .doc-footer{margin-top:48px;padding-top:24px;border-top:1px solid var(--border);font-family:'Source Sans 3',sans-serif;font-size:13px;color:var(--text-muted)}
+  @media(max-width:600px){body{padding:24px 16px 60px;font-size:16px}.doc-header h1{font-size:26px}.entry-name{padding:12px 16px 2px}.plain-english{padding:2px 16px 12px;font-size:15px}summary{padding:8px 16px}.layer-content{padding:4px 16px 14px 38px;font-size:14px}.legend{flex-direction:column;gap:8px}}
+</style>
+</head>
+<body>
+<div class="doc-header">
+  <h1>The Historian’s Desktop — Glossary</h1>
+  <div class="subtitle">A reference for the AI + History Collaboratory</div>
+  <div class="doc-meta">Version 1.3 &middot; 9 March 2026 &middot; Colin Greenstreet / Claude<br>Forty-six terms across six thematic clusters</div>
+</div>
+
+<div class="intro-block">
+  This glossary has been prepared to support <strong>AI + History Collaboratory</strong> members at our upcoming <strong>“Cowork for Historians: Skills and Workflows”</strong> session. This session will introduce the concept of a <strong>Historian’s Desktop</strong> as a research environment for historians built in <strong>Claude Cowork</strong>.
+</div>
+
+<div class="guide-box">
+  <strong>How to use this glossary:</strong> Each term shows a one-sentence definition by default. Click a cluster banner below to open it. Click <strong>Historian’s context</strong> within any entry to learn when you will encounter the term. Click <strong>Technical detail</strong> for the full architectural picture. You may never need the third layer, and that is fine.
+</div>
+
+<div class="legend">
+  <div class="legend-item"><div class="legend-dot l1"></div> Plain English — always visible</div>
+  <div class="legend-item"><div class="legend-dot l2"></div> Historian’s context — click to reveal</div>
+  <div class="legend-item"><div class="legend-dot l3"></div> Technical detail — click to reveal</div>
+</div>
+
+<div class="search-box">
+  <input type="text" id="searchInput" placeholder="Search terms…" autocomplete="off">
+  <div class="search-count" id="searchCount"></div>
+</div>
+
+<div class="controls">
+  <button onclick="openAllClusters()">Open all clusters</button>
+  <button onclick="expandAll('historian')">Open all historian context</button>
+  <button onclick="expandAll('technical')">Open all technical detail</button>
+  <button onclick="collapseAll()">Collapse all</button>
+</div>
+
+<div id="glossary"></div>
+
+<div class="doc-footer">
+  <p>Canonical source: <code>Historians_Desktop_Glossary_v1_3_09032026.md</code></p>
+  <p>This HTML reader is generated from the Markdown source. When updating definitions, edit the Markdown file and regenerate.</p>
+</div>
+
+<script type="application/json" id="glossary-data">
+[
+  {
+    "cluster": "Cluster 1 — The Environment",
+    "desc": "What you see and use.",
+    "entries": [
+      {
+        "term": "Artifact",
+        "plain": "A file or interactive element that Claude creates during a conversation — a document, a chart, a code component, or a web page — displayed in a panel alongside the chat.",
+        "historian": "When you ask Claude to produce something substantial — a timeline, a comparative table, a structured report — it often appears as an artifact in a side panel rather than inline in the conversation. Artifacts can be copied, downloaded, or iterated upon. In the AI + History Collaboratory’s sessions, artifacts are the primary way Claude delivers working outputs during History vibe coding.",
+        "technical": "Artifacts render in a sandboxed panel within the Claude interface. Supported formats include Markdown, HTML, React components, SVG, and Mermaid diagrams. Artifacts share no state with each other — each is self-contained. In Claude Chat, artifacts appear in the right-hand panel; in Cowork, Claude creates actual files on disk rather than using the artifact panel."
+      },
+      {
+        "term": "Claude Chat",
+        "plain": "The conversational interface where you type messages to Claude and receive replies — the simplest way to interact with the model.",
+        "historian": "This is where most Collaboratory members will start. Claude Chat is a browser-based conversation. You can create Projects within Chat to organise related conversations, attach files for Claude to read, and save skill files as project knowledge. Chat does not have access to your local file system — it works only with what you upload or paste.",
+        "technical": "Claude Chat runs in a web browser at claude.ai or via the mobile app. Each conversation has a context window — a finite amount of text Claude can hold in working memory at once. Chat supports file uploads (PDFs, images, text files), web search, and tool integrations via MCP servers configured in your account settings. Conversations are stored server-side by Anthropic."
+      },
+      {
+        "term": "Claude Code",
+        "plain": "A command-line tool that lets Claude work directly with files on your computer — reading, writing, and running code from a terminal window.",
+        "historian": "Claude Code is an advanced platform, suitable for developer historians who have worked with Claude Cowork for at least a couple of months, who understand the basic principles of Python (not how to write it, but how to read its structure), and who are comfortable working with the command line (helped by Claude Cowork) and have tried — supervised by Claude Cowork — to successfully push commits to a GitHub site. Claude Code is the environment where you can define and test custom subagents for pipelines like the Ottoman HTR workflow. It runs directly on your machine (not inside a virtual machine), which gives it power but also means it needs careful safety precautions — launching from the right directory, using deny rules (explicit prohibitions that block Claude Code from accessing specific files or directories), and never granting broad file access.",
+        "technical": "Claude Code is a Node.js application installed via npm. It operates with your user-level file permissions on the host operating system. It supports custom subagent definitions as Markdown files placed in <code>.claude/agents/</code>, YAML frontmatter for configuration, and explicit tool permissions per agent. Permission modes control how much autonomy Claude Code has: “Normal” (default) asks before every significant action. On macOS, Seatbelt sandboxing provides OS-level isolation; on Windows, no equivalent exists — safety depends on deny rules and careful launch discipline."
+      },
+      {
+        "term": "Claude Cowork",
+        "plain": "An autonomous working environment where Claude can read your files, create new documents, run code, and complete multi-step tasks — working independently within a folder you designate.",
+        "historian": "Cowork is the core of the Historian’s Desktop. When you give Cowork a folder of transcribed documents and ask it to summarise, index, and cross-reference them, it works through the task autonomously, creating files as it goes. It reads your CLAUDE.md file for instructions before starting. Cowork is where skill files, workflows, and governance come together as a working research environment. The Collaboratory’s hands-on sessions use Cowork as the primary platform.",
+        "technical": "Cowork runs inside a Linux virtual machine (Hyper-V on Windows) rather than directly on your operating system. File access between Windows and the VM is bridged via virtiofs. Only folders explicitly shared with the VM are accessible. Cowork deploys subagents automatically and opaquely — the user cannot currently define custom subagents through the same mechanism as Claude Code, but a well-crafted CLAUDE.md can instruct Cowork to follow a multi-stage workflow within a single context. Cowork conversations are stored locally on your machine and do not sync to claude.ai."
+      },
+      {
+        "term": "Claude Desktop",
+        "plain": "The downloadable application that gives you access to Claude Chat and Claude Cowork from your desktop, without needing a browser.",
+        "historian": "Claude Desktop is the application you install on your Windows or Mac machine. It contains both Chat and Cowork as tabs within the same interface, plus access to Claude Code. For Collaboratory members, installing Claude Desktop is the first step toward using Cowork and the Historian’s Desktop environment. The Setup Guide walks through the installation process.",
+        "technical": "Claude Desktop is an Electron application — a desktop app built using web technologies. It runs multiple Chromium-based sub-processes. On Windows, a background service called cowork-svc.exe manages the Cowork virtual machine (starting, stopping, configuring networking, and bridging file access). Claude Desktop requires a paid Claude subscription (Pro, Max, Team, or Enterprise) for Cowork access; it is not available on the free tier."
+      },
+      {
+        "term": "Claude Project",
+        "plain": "A named workspace within Claude Chat that groups related conversations, files, and instructions together.",
+        "historian": "When you create a Claude Project — for instance, “Ottoman Archive HTR” or “Hackathon Planning” — you can attach reference files, save skill files as project knowledge, and set a CLAUDE.md-style instruction document that applies to every conversation within the project. Projects are the organisational unit for focused work in Chat. The Collaboratory’s own project files live in a Claude Project.",
+        "technical": "Project knowledge is searched via a dedicated tool (project_knowledge_search) that Claude prioritises over web search and its own training knowledge. Each project has its own memory space — memories from one project do not cross into another. Files attached to a project are available to all conversations within it. Projects exist within Claude Chat and do not directly connect to Cowork’s file system."
+      },
+      {
+        "term": "GitHub organisation",
+        "plain": "A shared space on GitHub where a group can publish and manage code repositories collectively, rather than under a single person’s account.",
+        "historian": "The AI + History Collaboratory uses the <code>ai-and-history-collaboratory</code> GitHub organisation for knowledge development, sharing, and collaborative publishing. The Collaboratory is an asynchronous forum for a group of fourteen historians in the United Kingdom, Europe, and North America — it is not specifically about History vibe coding, but about building and sharing knowledge across a range of historical methods and specialisms. A separate GitHub organisation, <code>ottoman-archive</code>, has been created by Colin Greenstreet to support the “Opening the Ottoman Archive” initiative, a spinoff project from the Collaboratory. When you publish a tool built in Cowork, it goes to the relevant organisation’s repository. Publishing is optional, but it is how individual tools become community resources.",
+        "technical": "A GitHub organisation is an account type that owns repositories collectively. Members can have different permission levels (owner, member, outside collaborator). Repositories within an organisation can be public or private. The Claude GitHub App can be configured with restricted access to specific repositories only — for the Ottoman Archive work, it is limited to the <code>colin-claude-cowork-sandbox</code> repository."
+      },
+      {
+        "term": "Historian’s Desktop",
+        "plain": "A historical research environment implemented in Claude Cowork, combining specialised knowledge, structured workflows, external archive connections, and governance files into a coherent platform for scholarly work.",
+        "historian": "The Historian’s Desktop is not a product or a single piece of software. It is the name for the research environment you create when you combine Cowork with skill files, workflows, MCP connections, and governance documents like CLAUDE.md. The guiding principle is that the historian is the craftsperson; the AI tools are specialist instruments to be picked up deliberately, used with care, and put down. This stands in deliberate contrast to the default AI philosophy that treats friction as a bug to be automated away. The environment is capable of supporting historians of all types — social, economic, material, political, diplomatic, and beyond.",
+        "technical": "The Historian’s Desktop is implemented in Claude Cowork. Its components include: skill files (script-specific, genre-specific, and method-specific knowledge), workflows (multi-stage pipelines with human checkpoints), MCP servers (connections to external archives and services), and governance files (CLAUDE.md safety rules and research protocols). The environment is designed to be extensive and tailorable — historians extend it by adding or modifying skill files, workflows, MCP connections, and governance files to suit their own research domains."
+      },
+      {
+        "term": "Plugin",
+        "plain": "A packaged extension that adds new capabilities to Cowork — currently planned but not yet available.",
+        "historian": "Anthropic has indicated that Cowork will support a plugin system in future, allowing pre-built workflows to be installed and invoked by name. For the Collaboratory, this means that pipelines currently configured through CLAUDE.md instructions — such as the three-stage HTR pipeline — could eventually be packaged as plugins with dedicated commands. This is on the horizon but not yet available for use.",
+        "technical": "The plugin system is expected to support explicit subagent definitions, context isolation between agents, and slash-command invocation. Current workarounds involve encoding multi-stage workflows in CLAUDE.md and skill files, which instruct Cowork to follow the pipeline within a single context rather than running isolated subagents."
+      }
+    ]
+  },
+  {
+    "cluster": "Cluster 2 — Governance and Configuration",
+    "desc": "The files that control behaviour.",
+    "entries": [
+      {
+        "term": "CLAUDE.md",
+        "plain": "A configuration file you place in a working folder that Claude reads before beginning any task — your standing instructions.",
+        "historian": "Think of CLAUDE.md as analogous to a research methodology section. It tells Claude what safety rules to follow, how to name files, what communication style to use, and what the project context is. When Cowork opens your sandbox folder and finds a CLAUDE.md, it reads and follows those instructions before doing anything else. Writing a good CLAUDE.md is one of the first skills Collaboratory members develop — it is how you govern the AI’s behaviour in your research environment.",
+        "technical": "CLAUDE.md is a plain-text Markdown file read automatically from the working directory by Cowork, Code, and Chat Projects. It has no enforced schema — its power comes from being natural-language instructions that Claude follows. Multiple CLAUDE.md files can exist at different directory levels; the most local one takes precedence. The file is not encrypted or access-controlled — it relies on Claude’s instruction-following rather than technical enforcement. This means CLAUDE.md is a governance mechanism, not a security boundary."
+      },
+      {
+        "term": "Deny rules",
+        "plain": "Explicit prohibitions that block Claude Code from accessing specific files or directories, regardless of what it asks to do.",
+        "historian": "When working in Claude Code, deny rules are your safety net. They are entries in a settings file that prevent Claude from touching sensitive directories — your main Documents folder, your email, system files — even if you accidentally approve an action. For Collaboratory members testing subagent pipelines, setting deny rules before the first test run is a mandatory safety step covered in the Setup Guide.",
+        "technical": "Deny rules are defined in <code>.claude/settings.json</code> as an array of glob patterns under the <code>deny</code> key. They override all permission modes — even if a user approves an action, deny rules block it. They apply to file reads, writes, and command execution. Project-level settings take precedence over user-level settings. Deny rules do not exist in Cowork, which relies on VM isolation and virtiofs folder sharing instead."
+      },
+      {
+        "term": "Markdown",
+        "plain": "A lightweight text format that uses simple symbols (like <code>#</code> for headings and <code>**</code> for bold) to structure documents — readable as plain text and convertible to formatted output.",
+        "historian": "Almost everything in the Historian’s Desktop is written in Markdown: CLAUDE.md files, skill files, subagent definitions, memos, and research documents. Learning Markdown’s basics (headings, bold, links, lists) takes about ten minutes and is one of the most useful micro-skills for working with Claude. When Claude creates documents in Cowork, it defaults to Markdown unless you ask for something else.",
+        "technical": "Markdown (.md) files are plain UTF-8 text. They can include YAML frontmatter (metadata between <code>---</code> markers at the top of the file). Markdown renders natively in GitHub, Claude’s artifact panel, and most text editors. It converts cleanly to HTML, PDF, and Word formats. The specific dialect used in the Historian’s Desktop is CommonMark with GitHub Flavoured Markdown extensions (tables, task lists, fenced code blocks)."
+      },
+      {
+        "term": "Permission mode",
+        "plain": "Claude Code’s system for controlling how much it can do without asking you first.",
+        "historian": "Permission mode only applies in Claude Code, not in Cowork. In “Normal” mode (the default and the only mode Collaboratory members should use), Claude Code asks before every significant action — reading a file, writing a file, running a command. You approve each action individually. The rule for Collaboratory work is simple: stay in Normal mode, always choose “Yes” (one time) rather than “Yes for this session.”",
+        "technical": "Claude Code offers multiple permission levels. Normal mode requires per-action approval. Other modes reduce friction at the cost of safety. The <code>--dangerously-skip-permissions</code> flag disables all safety checks entirely — it exists for isolated Docker containers and should never be used on a workstation with real files. Permission mode interacts with deny rules: deny rules override approvals at any permission level."
+      },
+      {
+        "term": "Reference file",
+        "plain": "A companion document bundled with a skill file that provides background knowledge — terminology, historical context, or domain-specific guidance — for Claude to draw on as needed.",
+        "historian": "When a skill file tells Claude how to do a task, a reference file tells Claude what it needs to know to do it well. For instance, the Riksarkivet collaborative research skill is bundled with reference files on Swedish early modern legal terminology, Swedish administrative structures, and specific court systems. You do not need to write reference files from scratch — they can be built collaboratively with Claude during research sessions, then saved for reuse. Reference files are one of the ways the Historian’s Desktop accumulates domain knowledge over time.",
+        "technical": "Reference files are Markdown documents (typically named <code>references/*.md</code>) stored alongside the skill file, often bundled together in a ZIP folder for distribution. They have no required schema or YAML frontmatter — they are plain prose or structured reference material. The skill file’s instructions tell Claude when and how to consult them (e.g., “Before beginning a research session, read the following reference files if they exist in <code>references/</code>”). Reference files are loaded into the context window on demand, so they consume context space only when consulted."
+      },
+      {
+        "term": "Sandbox",
+        "plain": "A restricted area where a program can operate without affecting the rest of your system — like a playpen for software.",
+        "historian": "The sandbox is the specific folder you designate for Cowork or Claude Code to work in. We recommend you place the sandbox at <code>C:\\\\[Your User Name]\\\\ClaudeSandBox</code>. Within the sandbox you can develop your own folder and subfolder structure, and add to and modify this structure, working with Claude Cowork. You put only copies of files in the sandbox, never originals. Even though Cowork’s VM provides genuine isolation, the sandbox folder remains good practice as an additional safety layer — belt and braces. Setting up a sandbox folder is the first practical step in the Setup Guide.",
+        "technical": "The term “sandbox” is used at two levels. At the application level, it means the designated working directory. At the OS level, Cowork provides genuine sandboxing through its Linux VM — code executes inside the VM, not on the host. macOS provides additional sandboxing for Claude Code via Apple’s Seatbelt framework. Windows has no equivalent OS-level sandbox for Claude Code, which is why the working-directory sandbox and deny rules are especially important on Windows."
+      },
+      {
+        "term": "Skill file",
+        "plain": "A document that gives Claude specialised knowledge or instructions for a specific type of task — like handing a colleague a reference sheet before they start work.",
+        "historian": "Skill files are one of the most powerful components of the Historian’s Desktop. A skill file for Ottoman Naskh script tells Claude what to look for when checking transcriptions. A skill file for collaborative research with the Riksarkivet encodes a five-phase workflow. You can create skill files for any domain — a particular archive, a document genre, a research methodology. The Skill File Teaching Module helps you understand and evaluate skill files, and the History vibe coding initiative includes building new ones.",
+        "technical": "A skill file is a Markdown document with YAML frontmatter containing at minimum a <code>name</code> and <code>description</code> field. The description serves as a trigger — it tells Claude when to activate the skill. Anthropic’s guidance recommends “pushy” trigger descriptions to combat undertriggering. Skill files are placed in a <code>skills/</code> directory and can be loaded in Cowork, Claude Code (via the <code>skills</code> YAML field), or Chat Projects (as project knowledge). They have no enforced schema beyond the YAML frontmatter requirement."
+      },
+      {
+        "term": "Trigger description",
+        "plain": "The part of a skill file’s metadata that tells Claude when to activate it — a set of conditions that say “use this skill when you see these kinds of tasks.”",
+        "historian": "A well-written trigger description is the difference between a skill that activates reliably and one that sits unused. If your Riksarkivet research skill only triggers when someone says “search the Riksarkivet,” it will miss requests phrased as “look in the Swedish archives.” Anthropic’s guidance is to make triggers “pushy” — casting a wide net and listing many synonyms and variations. The Skill File Teaching Module examines trigger quality as one of its core analytical modules.",
+        "technical": "The trigger description lives in the <code>description</code> field of a skill file’s YAML frontmatter. It is matched against the user’s input by Claude’s skill selection system. Effective triggers include: positive triggers (when to activate), negative triggers (when not to activate), synonyms and variant phrasings, and specific keywords. Undertriggering (false negatives) is a more common problem than overtriggering (false positives) in practice."
+      },
+      {
+        "term": "YAML frontmatter",
+        "plain": "Structured metadata at the top of a Markdown file — enclosed between two lines of three dashes — that provides machine-readable information about the document.",
+        "historian": "You will encounter YAML frontmatter at the top of every skill file and every subagent definition. It looks like a small block of labelled fields (name, description, tools, model) before the main content begins. You do not need to write YAML from scratch — Claude generates it — but understanding what the fields mean helps you evaluate and modify skill files during teaching sessions and History vibe coding.",
+        "technical": "YAML (YAML Ain’t Markup Language) is a human-readable data serialisation format. Frontmatter is delimited by <code>---</code> on its own line at the start and end of the block. Required fields for skill files are <code>name</code> and <code>description</code>. Subagent definitions add <code>tools</code>, <code>model</code>, and optionally <code>allowed_tools</code> or <code>disallowed_tools</code>. Indentation is significant in YAML — incorrect indentation breaks parsing."
+      }
+    ]
+  },
+  {
+    "cluster": "Cluster 3 — Architecture",
+    "desc": "What is happening under the hood.",
+    "entries": [
+      {
+        "term": "Context window",
+        "plain": "The working memory of a Claude conversation — everything Claude can “see” at once, including your messages, its replies, any documents, and its instructions.",
+        "historian": "The context window is finite. When a conversation grows very long or you feed Claude many documents at once, older material may fall out of what Claude can actively reference. This is why the Historian’s Desktop uses versioned files saved to disk rather than relying on conversation history — conversation memory is ephemeral, but files persist. Subagents have separate context windows from each other, which is why they can focus on specific tasks without being overwhelmed by the full pipeline’s information.",
+        "technical": "Context windows are measured in tokens (roughly three-quarters of a word). Claude’s current models have context windows of 200,000 tokens. The context window contains: the system prompt, CLAUDE.md instructions, skill files, conversation history, uploaded documents, and tool results. When context is exhausted, Claude cannot process additional input without losing earlier material. In subagent architectures, each subagent has its own isolated context window, preventing information leakage between pipeline stages."
+      },
+      {
+        "term": "Electron",
+        "plain": "A framework for building desktop applications using web technologies — it is why Claude Desktop looks and behaves like a web page running in its own window.",
+        "historian": "You will probably never need to think about Electron directly. It matters only when troubleshooting: if Claude Desktop is consuming unexpected memory or CPU, it is because Electron runs multiple browser-like processes in the background. The Task Manager on Windows will show several Claude-related processes — this is normal for an Electron application.",
+        "technical": "Electron bundles Chromium (the browser engine behind Chrome) and Node.js into a single application. Each Electron window runs in its own renderer process. Claude Desktop’s main process manages the Cowork VM service, MCP connections, and window management. The multiple sub-processes visible in Task Manager are standard Electron architecture, not a sign of malfunction."
+      },
+      {
+        "term": "Linux VM (Virtual Machine)",
+        "plain": "A complete computer simulated in software — Cowork runs its own miniature Linux computer inside your Windows machine.",
+        "historian": "This is the single most important architectural fact about Cowork for safety purposes. When Cowork runs code, creates files, or processes your documents, it does so inside a self-contained Linux environment, not directly on your Windows system. This provides genuine isolation — if something goes wrong inside the VM, your main system is protected.",
+        "technical": "Cowork uses Hyper-V (Microsoft’s built-in virtualisation technology) to run a Linux VM. The VM’s filesystem is stored in VHDX files: rootfs.vhdx for the Linux operating system and sessiondata.vhdx for session storage. The VM is managed by cowork-svc.exe, a Windows service that handles startup, shutdown, networking, and file access bridging. File sharing between Windows and the VM uses virtiofs. Only explicitly shared folders are accessible inside the VM."
+      },
+      {
+        "term": "System prompt",
+        "plain": "The instructions loaded into a Claude instance at startup that define its role, expertise, and constraints — what Claude “knows about itself” before you say anything.",
+        "historian": "Every time you start a conversation with Claude, a system prompt is active behind the scenes. In standard Chat, this is Anthropic’s default prompt. In a Claude Project, your project instructions are added to it. For subagents in Claude Code, the system prompt is the body of the agent’s Markdown definition file. Understanding that system prompts exist helps explain why Claude behaves differently in different contexts.",
+        "technical": "The system prompt occupies the first portion of the context window. It is not visible to the user but is always present. System prompts can instruct Claude on persona, domain expertise, output format, safety constraints, and tool usage. They are set by Anthropic (base behaviour), by the application (Chat, Cowork, or Code), and by the user (via CLAUDE.md, project instructions, or subagent definitions). Later instructions generally override earlier ones when they conflict."
+      },
+      {
+        "term": "VHDX",
+        "plain": "The file format Windows uses for virtual machine disk images — the container that holds Cowork’s Linux filesystem.",
+        "historian": "You will never interact with VHDX files directly. They matter only for understanding where Cowork’s data lives on your machine and for troubleshooting disk space issues. Cowork uses two VHDX files: one for the Linux operating system itself and one for session data.",
+        "technical": "VHDX (Virtual Hard Disk Extended) is Microsoft’s format for Hyper-V virtual disk images, supporting disks larger than 2 TB with built-in corruption protection. Cowork’s VHDX files are stored in the Claude Desktop application data directory. They are dynamically expanding — they grow as data is written but do not automatically shrink when data is deleted. Session data lives in sessiondata.vhdx and does not sync to claude.ai."
+      },
+      {
+        "term": "virtiofs",
+        "plain": "The file-sharing method that Cowork uses to make your Windows folders accessible inside its Linux virtual machine.",
+        "historian": "virtiofs is the invisible bridge between your sandbox folder on Windows and Cowork’s working environment inside the VM. When you tell Cowork to work with files in your sandbox, virtiofs makes that folder appear inside the Linux VM. Only folders you explicitly share are bridged — Cowork cannot see the rest of your file system. If virtiofs fails, Cowork will report an error — restart Cowork, check that the shared folder exists, and if the problem persists, restart Claude Desktop.",
+        "technical": "virtio-fs is a high-performance shared file system for virtual machines, built on the FUSE (Filesystem in Userspace) protocol and virtio transport. It provides near-native file access speeds compared to traditional network file sharing. In Cowork’s architecture, the Windows cowork-svc.exe service configures the virtiofs mount points when the VM starts. Mount failures typically indicate that the VM service has crashed or that the shared folder path has changed."
+      }
+    ]
+  },
+  {
+    "cluster": "Cluster 4 — Workflows and Pipelines",
+    "desc": "How work moves through stages.",
+    "entries": [
+      {
+        "term": "Annotation layering",
+        "plain": "The practice of each stage in a pipeline adding its own observations to a document while preserving everything previous stages noted — building up a cumulative record.",
+        "historian": "Annotation layering is specific to the HTR pipeline methods being developed in the “Opening the Ottoman Archive” initiative, a spinoff from the AI + History Collaboratory. In that pipeline, the visual capture agent adds flags noting where the machine transcription may have missed text. The palaeographic QA agent then adds its own flags while keeping all the visual capture flags intact. This is analogous to marginalia in scholarly editing — each reader’s notes accumulate without erasing previous ones.",
+        "technical": "Annotation layering is implemented through structured inline flags in the transcription output. Each flag is prefixed with its stage identifier (VC, PQ, SP) and includes a severity level and description. Flags are preserved between stages — no stage may delete or modify another stage’s flags. The cumulative annotation serves as both an audit trail and a feedback mechanism, since later stages can reference earlier flags."
+      },
+      {
+        "term": "Deliberate friction",
+        "plain": "The design principle that requiring human review at each stage of an AI workflow is a feature, not a limitation — it forces the historian to form judgments rather than passively receive results.",
+        "historian": "Deliberate friction is the philosophical core of the Historian’s Desktop. When you review each pipeline stage’s output before invoking the next, you are forced to assess the work in progress. You cannot passively receive a finished product. Each review creates an audit trail — your decision to proceed or send work back is itself a scholarly judgment.",
+        "technical": "Deliberate friction is implemented through sequential invocation with human checkpoints. It produces three practical benefits: intellectual engagement (the historian must evaluate), audit trails (each checkpoint decision is recorded), and feedback loops (observations at later stages can trigger re-examination at earlier stages)."
+      },
+      {
+        "term": "Human checkpoint",
+        "plain": "A mandatory pause between pipeline stages where the historian reviews the output, decides whether to proceed, and takes responsibility for the next step.",
+        "historian": "Human checkpoints apply to any historical research workflow, not only HTR pipelines. The principle is the same wherever multi-stage AI processing is involved: you — not the AI — decide whether the output is good enough to pass to the next stage. Each checkpoint is a moment of scholarly judgment. Without checkpoints, the pipeline would be a black box. See also the Workflow entry for how checkpoints fit within broader research sequences.",
+        "technical": "Human checkpoints are enforced by design rather than by technical mechanism. In Claude Code, sequential invocation naturally requires the user to invoke each subagent manually. In Cowork, checkpoints must be encoded in CLAUDE.md instructions. There is currently no technical enforcement preventing a user from instructing Claude to skip checkpoints — the constraint is procedural and professional."
+      },
+      {
+        "term": "Pipeline",
+        "plain": "A sequence of processing stages where the output of one stage becomes the input of the next — each stage does one job and passes the result forward.",
+        "historian": "Pipelines are the organising metaphor for complex multi-step work in the Historian’s Desktop — any research process that has distinct sequential phases can be modelled as a pipeline. A specific example is the Ottoman HTR pipeline, which has three stages: visual capture QA, palaeographic QA, and semantic processing. But the pattern applies equally to other workflows.",
+        "technical": "In Claude Code, pipelines are implemented through sequential subagent invocation — each agent produces annotated output files that the next agent reads. In Cowork, pipelines are implemented through CLAUDE.md instructions that direct Cowork to follow a defined sequence with human checkpoints. Pipeline stages communicate through files, not through shared memory or context windows."
+      },
+      {
+        "term": "Sequential invocation",
+        "plain": "The practice of calling pipeline stages one at a time, in order, rather than running them simultaneously — each stage completes before the next begins.",
+        "historian": "You invoke one pipeline stage, review its output, then invoke the next stage, review again, and so on. You never run all stages at once. This is both a design choice (enabling human checkpoints) and a practical necessity (each stage needs the previous stage’s output). The deliberate slowness is the point — it creates the space for scholarly judgment.",
+        "technical": "In Claude Code, sequential invocation is the natural mode — the user invokes each subagent by name. Each subagent runs in its own context window and produces output files. In Cowork, sequential invocation must be explicitly instructed in CLAUDE.md, since Cowork’s default behaviour is to parallelise tasks when it can."
+      },
+      {
+        "term": "Subagent",
+        "plain": "A specialised AI instance with its own focus, instructions, and working memory, invoked by a main agent to handle a specific task — like calling in a specialist consultant.",
+        "historian": "In the Ottoman HTR pipeline, three subagents play distinct roles: the visual capture agent checks the image against the transcription, the palaeographic QA agent assesses whether the script has been read correctly, and the semantic processing agent interprets the historical content. The analogy from academic life is a research team with an archivist, a palaeographer, and a historian.",
+        "technical": "In Claude Code, subagents are defined as Markdown files in <code>.claude/agents/</code> with YAML frontmatter specifying name, description, tools, and model. Each subagent runs in its own isolated context window. In Cowork, subagents are deployed automatically and opaquely — the user describes a task and Cowork decides whether and how to parallelise it."
+      },
+      {
+        "term": "Workflow",
+        "plain": "A defined sequence of steps for completing a research task — the plan that says what to do first, second, third, and how to handle what goes wrong.",
+        "historian": "A workflow is broader than a pipeline. The Riksarkivet collaborative research skill encodes a five-phase workflow: scoping, systematic term mapping, evidence collection, synthesis, and documentation. Workflows in the Historian’s Desktop are encoded in skill files and CLAUDE.md instructions — they are the “how to do the work” component that turns Claude from a general-purpose assistant into a research environment with disciplined procedures.",
+        "technical": "Workflows are implemented as natural-language instructions in skill files or CLAUDE.md documents. They can include: phase definitions with entry and exit criteria, tool-use patterns, confidence grading frameworks, output format specifications, and error handling procedures. Workflows are not enforced by technical mechanisms — they rely on Claude’s instruction-following. A workflow that spans multiple sessions requires persistence through saved files."
+      }
+    ]
+  },
+  {
+    "cluster": "Cluster 5 — The MCP Ecosystem",
+    "desc": "External connections.",
+    "entries": [
+      {
+        "term": "API / API key",
+        "plain": "An API (Application Programming Interface) is a structured way for software to talk to other software. An API key is the credential — like a password — that identifies who is making the request.",
+        "historian": "APIs are how the tools in the Historian’s Desktop connect to external services. For the AI + History Collaboratory’s demonstrations and sessions, the MCP servers we use or have developed connect to publicly accessible APIs that do not require API keys, so API key security is not an issue for current Collaboratory work. API keys become relevant when connecting to paid services like AI model APIs (Gemini, Anthropic), where they should be treated as sensitive credentials.",
+        "technical": "APIs define endpoints (URLs), request formats (typically JSON), authentication methods (API keys, OAuth tokens), and response formats. REST APIs use HTTP methods (GET, POST, PUT, DELETE). Most archival and cultural heritage APIs (IIIF, OAI-PMH, Riksarkivet) are publicly accessible without authentication, but AI model APIs require keys with associated billing."
+      },
+      {
+        "term": "IIIF",
+        "plain": "International Image Interoperability Framework — a set of standards that lets institutions share high-resolution images in a consistent way, so any compatible viewer can display images from any participating collection.",
+        "historian": "IIIF is how many archives and libraries serve their digitised document images. The IIIF Static Viewer for the Ottoman Government Gazette — one of the Collaboratory’s completed exemplar projects — demonstrates how IIIF can be used in History vibe-coded tools. A general-purpose IIIF MCP server is identified as a significant gap and opportunity.",
+        "technical": "IIIF defines several APIs: the Image API (requesting images at specific sizes, regions, and rotations), the Presentation API (describing how images relate to each other as pages, canvases, and manifests), and the Search API (full-text search within annotated images). IIIF manifests are JSON-LD documents. Most major cultural heritage institutions publish IIIF endpoints."
+      },
+      {
+        "term": "MCP (Model Context Protocol)",
+        "plain": "A standard way for AI models like Claude to connect to external tools and services — it defines how Claude asks for information and how services respond.",
+        "historian": "MCP is what makes the Historian’s Desktop extensible. Without MCP, Claude can only work with what you upload or paste. With MCP servers connected, Claude can search archives, read RSS feeds, and interact with external databases — all from within a conversation. The Historian’s Desktop’s current MCP connections include the Riksarkivet server (ra-mcp), an Old Bailey Online MCP server, three mini VRTI MCP servers, and a custom RSS reader. Planned connections include IIIF, OAI-PMH, and Zotero.",
+        "technical": "MCP defines a protocol for tool discovery (what tools are available), tool invocation (calling a tool with parameters), and result handling (processing the response). MCP servers expose tools that Claude can call. The protocol uses JSON-based message passing. MCP servers can run locally or remotely. Claude Desktop and Claude Chat both support MCP server connections."
+      },
+      {
+        "term": "MCP server",
+        "plain": "A small program that acts as a bridge between Claude and an external service — translating Claude’s requests into the service’s language and returning the results.",
+        "historian": "Each external connection in the Historian’s Desktop runs through an MCP server. The ra-mcp server connects Claude to the Riksarkivet’s holdings. The RSS reader MCP server connects Claude to Substack and other feeds. A key finding is that nearly all MCP servers for cultural heritage are built by individual volunteer developers, not by the institutions that provide the underlying APIs.",
+        "technical": "MCP servers can be built in Python (using the FastMCP library) or TypeScript/Node.js (using the MCP SDK). A server exposes one or more tools, each with a name, description, parameter schema, and handler function. Servers can be configured to run locally via stdio or remotely via Server-Sent Events (SSE). Claude Desktop discovers available tools at startup by querying each configured server."
+      },
+      {
+        "term": "OAI-PMH",
+        "plain": "Open Archives Initiative Protocol for Metadata Harvesting — a standard that lets you download catalogue records from libraries and archives in bulk.",
+        "historian": "OAI-PMH is how many institutional repositories and digital libraries make their metadata available for harvesting. Like IIIF, a general-purpose OAI-PMH MCP server is identified as a significant gap — building one would allow any Claude-based research environment to harvest metadata from any compliant repository.",
+        "technical": "OAI-PMH uses HTTP requests with six defined verbs: Identify, ListSets, ListMetadataFormats, ListIdentifiers, ListRecords, and GetRecord. Records are typically returned in Dublin Core or MARC XML format. The protocol supports selective harvesting by date range and collection set. Responses include resumption tokens for paginating through large result sets."
+      },
+      {
+        "term": "RSS feed",
+        "plain": "A standardised format for websites to publish updates — new posts, articles, or episodes — that readers and software can subscribe to.",
+        "historian": "The Collaboratory’s RSS reader MCP server was built to solve a specific problem: Claude cannot reliably access Substack content through standard web tools because of JavaScript rendering and indexing gaps. The MCP server parses RSS feeds directly, giving Claude access to the full text of new posts.",
+        "technical": "RSS (Really Simple Syndication) feeds are XML documents served at a known URL. Each feed contains items with title, link, publication date, and content. Atom is a related standard. The RSS reader MCP server fetches and parses these XML documents, exposing contents as searchable tool results. RSS feeds bypass JavaScript rendering entirely."
+      },
+      {
+        "term": "Tool (in the MCP sense)",
+        "plain": "A specific capability that an MCP server offers to Claude — a named action like “search transcriptions” or “fetch catalogue records” that Claude can invoke with defined parameters.",
+        "historian": "When Claude uses the Riksarkivet MCP server, it calls specific tools: <code>search_transcribed</code> (searching within transcribed documents), <code>search_metadata</code> (searching catalogue records), and others. Each tool has a defined purpose and expects specific inputs. Understanding what tools are available is part of learning to work effectively with MCP connections.",
+        "technical": "An MCP tool has a name (string identifier), description (natural language), input schema (JSON Schema defining parameters), and a handler function. Claude selects tools based on their descriptions matching the user’s intent. Tool results are returned as text or structured data within the conversation context. A single MCP server can expose multiple tools."
+      }
+    ]
+  },
+  {
+    "cluster": "Cluster 6 — Research Methods and Domain Terms",
+    "desc": "The scholarly side.",
+    "entries": [
+      {
+        "term": "Finding aid",
+        "plain": "A document that describes the contents and organisation of an archival collection — the map that tells researchers what is in a repository and how to locate it.",
+        "historian": "Finding aids are written for archivists, not researchers, which is why they can be dense and abbreviated. Several planned History vibe coding projects address this gap: the Finding Aid Plain-English Guide translates catalogue descriptions into research intelligence, and the Archive Research Planner uses finding aids as inputs.",
+        "technical": "Finding aids typically follow the Encoded Archival Description (EAD) standard, an XML schema for describing archival collections. They are structured hierarchically: collection, series, sub-series, file, item. OAI-PMH can be used to harvest finding aid metadata."
+      },
+      {
+        "term": "Ground truth",
+        "plain": "A verified, human-checked transcription of a document that serves as the benchmark against which automated transcriptions are measured.",
+        "historian": "When testing whether an HTR system can read a particular script correctly, you need ground truth — a transcription you know is accurate because a qualified human produced it. Building ground truth is slow and requires palaeographic expertise, which is why it is a bottleneck for HTR development.",
+        "technical": "Ground truth in HTR typically takes the form of line-by-line or region-by-region transcriptions aligned to specific zones of a document image. Quality metrics include Character Error Rate (CER) and Word Error Rate (WER). Creation tools include Transkribus, eScriptorium, and manual transcription."
+      },
+      {
+        "term": "HTR (Handwritten Text Recognition)",
+        "plain": "Technology that converts images of handwritten text into machine-readable text — teaching a computer to read handwriting.",
+        "historian": "HTR is the foundational technology for the “Opening the Ottoman Archive” initiative. The challenge is that Ottoman documents use multiple scripts (Naskh, Rik’a, Nastaʿlīq, Dīvānī, Sülüs, Siyakat, Karamanlidika, and Armeno-Turkish), each with distinct conventions. The three-stage pipeline exists because no single HTR system produces reliable output across all these scripts.",
+        "technical": "HTR systems use machine learning models trained on paired images and transcriptions. Current approaches include CRNNs with CTC, transformer-based architectures, and VLMs. The Collaboratory’s pipeline uses Gemini (a VLM) for initial transcription, followed by Claude-based QA. Traditional platforms like Transkribus require script-specific training datasets."
+      },
+      {
+        "term": "OCR (Optical Character Recognition)",
+        "plain": "Technology that converts images of printed text into machine-readable text — the printed-text counterpart to HTR.",
+        "historian": "OCR works well for clearly printed modern text but struggles with historical documents — degraded paper, inconsistent typefaces, mixed scripts, and marginal annotations all reduce accuracy. For the Ottoman Archive project, OCR is relevant for printed documents like the Ottoman Government Gazette.",
+        "technical": "OCR engines include Tesseract (open source), ABBYY FineReader (commercial), and cloud-based services. Modern OCR increasingly uses deep learning rather than template matching. For Ottoman printed text, OCR must handle Arabic-script typography with connected letters, diacritical marks, and right-to-left reading order."
+      },
+      {
+        "term": "Palaeography",
+        "plain": "The study of historical handwriting — the discipline of reading, dating, and interpreting scripts from the past.",
+        "historian": "Palaeographic expertise is what the HTR pipeline’s second stage draws on. Different Ottoman scripts have different challenges: Siyakat uses highly abbreviated forms; Dīvānī uses decorative elongations; Karamanlidika uses Greek characters to write Turkish. The AI + History Collaboratory includes members with palaeographic expertise across several of these traditions.",
+        "technical": "Palaeographic analysis considers letter forms (ductus), abbreviation systems, scribal conventions, dating markers, and regional variations. In the HTR pipeline, palaeographic QA is encoded in the second subagent’s system prompt with script-specific guidance for all eight Ottoman script types."
+      },
+      {
+        "term": "Socratic methodology",
+        "plain": "An approach to working with AI in which the historian asks questions and interrogates the AI’s intentions at every stage — understanding the plan before accepting the output.",
+        "historian": "The Socratic methodology is the pedagogical backbone of History vibe coding. It has four stages: architecture (what are we building and why?), design (what components and how do they connect?), build plan (what is the sequence of construction?), and build and test (make it, then verify it works). The methodology is tool-agnostic — validated in Google AI Studio (Gemini) and Claude Cowork.",
+        "technical": "The four stages map to a structured conversation pattern: the historian states a goal, Claude proposes an approach, the historian interrogates the proposal, and only after this dialogue does building begin. The methodology explicitly rejects “prompt and accept” workflows. It is a disciplined practice, not a software feature."
+      },
+      {
+        "term": "History vibe coding",
+        "plain": "Building working software tools by describing what you want in natural language and collaborating with an AI to produce it — without needing to write code yourself — applied specifically to historical research.",
+        "historian": "History vibe coding is the AI + History Collaboratory’s coached programme in which historians build genuine research tools using Claude Cowork and related platforms. The Collaboratory’s approach adds the Socratic methodology: you do not just describe and accept, you interrogate, refine, and verify. Six projects are documented in Colin Greenstreet’s Generative Lives article (Colin Greenstreet, “History vibe coding: An offer to coach any and all historians wanting to give it a try”, <em>Generative Lives</em>, 6 March 2026).",
+        "technical": "History vibe coding uses AI code generation with the historian providing requirements, domain knowledge, and quality judgments. The separation between building (creating the tool in a sandbox) and publishing (pushing to GitHub) is deliberate — building is the learning experience; publishing is optional. Tools built include web applications, Python scripts, MCP servers, and skill files."
+      },
+      {
+        "term": "VLM (Visual Language Model)",
+        "plain": "An AI model that can process both images and text together — it can look at a document photograph and produce a transcription or description.",
+        "historian": "VLMs are what make the current HTR pipeline possible without training a custom model for each Ottoman script. Google’s Gemini, used in the pipeline’s first stage, takes a document image and produces a structured transcription. The advantage is flexibility; the disadvantage is unreliability. This is why the pipeline adds two further stages of quality assurance.",
+        "technical": "VLMs combine vision encoders (processing image data) with language models (generating text). Examples include Google Gemini, OpenAI GPT-4V/GPT-4o, and Anthropic Claude. For HTR, VLMs operate in zero-shot or few-shot mode. Output quality varies significantly by script complexity, image quality, and prompt engineering."
+      }
+    ]
+  }
+]
+</script>
+
+<script>
+var glossaryData = JSON.parse(document.getElementById("glossary-data").textContent);
+var container = document.getElementById("glossary");
+
+glossaryData.forEach(function(cluster, ci) {
+  var clusterDiv = document.createElement("div");
+  clusterDiv.className = "cluster";
+
+  // Hidden checkbox for CSS-only toggle
+  var toggle = document.createElement("input");
+  toggle.type = "checkbox";
+  toggle.className = "cluster-toggle";
+  toggle.id = "cluster-" + ci;
+  toggle.style.display = "none";
+  clusterDiv.appendChild(toggle);
+
+  // Clickable header as label
+  var header = document.createElement("label");
+  header.className = "cluster-header";
+  header.setAttribute("for", "cluster-" + ci);
+  header.innerHTML = '<span class="cluster-chevron">\u25B8</span>'
+    + '<div class="cluster-header-text"><h2>' + cluster.cluster + '</h2>'
+    + '<div class="cluster-desc">' + cluster.desc + '</div></div>'
+    + '<span class="cluster-count">' + cluster.entries.length + '</span>';
+  clusterDiv.appendChild(header);
+
+  var entriesDiv = document.createElement("div");
+  entriesDiv.className = "cluster-entries";
+
+  cluster.entries.forEach(function(entry) {
+    var entryDiv = document.createElement("div");
+    entryDiv.className = "entry";
+    entryDiv.setAttribute("data-term", entry.term.toLowerCase());
+    entryDiv.setAttribute("data-searchtext", (entry.term + " " + entry.plain + " " + entry.historian + " " + entry.technical).toLowerCase());
+
+    var nameDiv = document.createElement("div");
+    nameDiv.className = "entry-name";
+    nameDiv.textContent = entry.term;
+
+    var plainDiv = document.createElement("div");
+    plainDiv.className = "plain-english";
+    plainDiv.innerHTML = entry.plain;
+
+    var histDetails = document.createElement("details");
+    histDetails.className = "historian-detail";
+    var histSummary = document.createElement("summary");
+    histSummary.className = "layer2-summary";
+    histSummary.textContent = "Historian\u2019s context";
+    var histContent = document.createElement("div");
+    histContent.className = "layer-content";
+    histContent.innerHTML = entry.historian;
+    histDetails.appendChild(histSummary);
+    histDetails.appendChild(histContent);
+
+    var techDetails = document.createElement("details");
+    techDetails.className = "technical-detail";
+    var techSummary = document.createElement("summary");
+    techSummary.className = "layer3-summary";
+    techSummary.textContent = "Technical detail";
+    var techContent = document.createElement("div");
+    techContent.className = "layer-content";
+    techContent.innerHTML = entry.technical;
+    techDetails.appendChild(techSummary);
+    techDetails.appendChild(techContent);
+
+    entryDiv.appendChild(nameDiv);
+    entryDiv.appendChild(plainDiv);
+    entryDiv.appendChild(histDetails);
+    entryDiv.appendChild(techDetails);
+    entriesDiv.appendChild(entryDiv);
+  });
+
+  clusterDiv.appendChild(entriesDiv);
+  container.appendChild(clusterDiv);
+});
+
+// Search
+var searchInput = document.getElementById("searchInput");
+var searchCount = document.getElementById("searchCount");
+
+function clearHighlights() {
+  document.querySelectorAll("mark.search-highlight").forEach(function(m) {
+    var parent = m.parentNode;
+    parent.replaceChild(document.createTextNode(m.textContent), m);
+    parent.normalize();
+  });
+  document.querySelectorAll(".layer-has-match").forEach(function(s) {
+    s.classList.remove("layer-has-match");
+  });
+}
+
+function highlightInNode(el, query) {
+  var count = 0;
+  var walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT, null, false);
+  var nodes = [];
+  while (walker.nextNode()) nodes.push(walker.currentNode);
+
+  nodes.forEach(function(textNode) {
+    var text = textNode.textContent;
+    var lower = text.toLowerCase();
+    var idx = lower.indexOf(query);
+    if (idx === -1) return;
+
+    var frag = document.createDocumentFragment();
+    var lastIdx = 0;
+    while (idx !== -1) {
+      count++;
+      frag.appendChild(document.createTextNode(text.substring(lastIdx, idx)));
+      var mark = document.createElement("mark");
+      mark.className = "search-highlight";
+      mark.textContent = text.substring(idx, idx + query.length);
+      frag.appendChild(mark);
+      lastIdx = idx + query.length;
+      idx = lower.indexOf(query, lastIdx);
+    }
+    frag.appendChild(document.createTextNode(text.substring(lastIdx)));
+    textNode.parentNode.replaceChild(frag, textNode);
+  });
+  return count;
+}
+
+function applyHighlights(query) {
+  document.querySelectorAll(".entry:not(.hidden)").forEach(function(entry) {
+    // Highlight in visible plain-english and term name
+    highlightInNode(entry.querySelector(".plain-english"), query);
+    highlightInNode(entry.querySelector(".entry-name"), query);
+
+    // Check and highlight in historian layer; auto-open if match found
+    var histDetail = entry.querySelector(".historian-detail");
+    var histContent = entry.querySelector(".historian-detail .layer-content");
+    var histSummary = entry.querySelector(".historian-detail > summary");
+    if (histContent && histContent.textContent.toLowerCase().indexOf(query) !== -1) {
+      highlightInNode(histContent, query);
+      if (histSummary) histSummary.classList.add("layer-has-match");
+      if (histDetail) histDetail.open = true;
+    }
+
+    // Check and highlight in technical layer; auto-open if match found
+    var techDetail = entry.querySelector(".technical-detail");
+    var techContent = entry.querySelector(".technical-detail .layer-content");
+    var techSummary = entry.querySelector(".technical-detail > summary");
+    if (techContent && techContent.textContent.toLowerCase().indexOf(query) !== -1) {
+      highlightInNode(techContent, query);
+      if (techSummary) techSummary.classList.add("layer-has-match");
+      if (techDetail) techDetail.open = true;
+    }
+  });
+}
+
+searchInput.addEventListener("input", function() {
+  clearHighlights();
+  var query = searchInput.value.toLowerCase().trim();
+  var entries = document.querySelectorAll(".entry");
+  var clusters = document.querySelectorAll(".cluster");
+  var visible = 0;
+
+  if (!query) {
+    entries.forEach(function(e) { e.classList.remove("hidden"); });
+    clusters.forEach(function(c) { c.classList.remove("hidden"); });
+    // Collapse layers that were auto-opened by search
+    document.querySelectorAll("details").forEach(function(d) { d.open = false; });
+    searchCount.textContent = "";
+    return;
+  }
+
+  entries.forEach(function(entry) {
+    var text = entry.getAttribute("data-searchtext");
+    if (text.indexOf(query) !== -1) {
+      entry.classList.remove("hidden");
+      visible++;
+    } else {
+      entry.classList.add("hidden");
+    }
+  });
+
+  clusters.forEach(function(cluster) {
+    var vis = cluster.querySelectorAll(".entry:not(.hidden)");
+    if (vis.length === 0) {
+      cluster.classList.add("hidden");
+    } else {
+      cluster.classList.remove("hidden");
+      var toggle = cluster.querySelector(".cluster-toggle");
+      if (toggle) toggle.checked = true;
+    }
+  });
+
+  if (query.length >= 2) applyHighlights(query);
+
+  searchCount.textContent = visible === 0 ? "No matching terms" : visible + " term" + (visible === 1 ? "" : "s") + " found";
+});
+
+function openAllClusters() {
+  document.querySelectorAll(".cluster-toggle").forEach(function(t) { t.checked = true; });
+}
+function expandAll(layer) {
+  openAllClusters();
+  var sel = layer === "historian" ? ".historian-detail" : ".technical-detail";
+  document.querySelectorAll(sel).forEach(function(d) { d.open = true; });
+}
+function collapseAll() {
+  document.querySelectorAll(".cluster-toggle").forEach(function(t) { t.checked = false; });
+  document.querySelectorAll("details").forEach(function(d) { d.open = false; });
+}
+</script>
+</body>
+</html>
