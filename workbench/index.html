@@ -1,0 +1,1308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Historian's Desktop – Workspace Workbench</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { background: #0e0e0e; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; overflow: hidden; }
+    #root { height: 100vh; }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.9/babel.min.js"></script>
+  <script type="text/babel">
+const { useState, useCallback, useRef, useEffect } = React;
+
+// --- DATA_START ---
+const WORKSPACE_DATA = {
+  scanned_at: "2026-03-10T19:00:00Z",
+  root: "historians-desktop",
+  mode: 2,
+  areas: [
+    {
+      label: "Historian\u2019s Desktop",
+      icon: "book",
+      path: "historians-desktop",
+      open: true,
+      total: 38,
+      children: [
+        { n: "README.md", s: 14200, r: "README.md" },
+        { n: "old-bailey-mcp/", d: true, c: 5, ch: [
+          { n: "old_bailey_mcp.py", s: 43521 },
+          { n: "README.md", s: 5151 },
+          { n: "requirements.txt", s: 52 },
+          { n: "setup.bat", s: 2802 },
+          { n: "test_api_operators.py", s: 13459 },
+        ]},
+        { n: "vrti-mcp/", d: true, c: 13, ch: [
+          { n: "README.md", s: 2927 },
+          { n: "design-docs/", d: true, c: 7, ch: [
+            { n: "VRTI_MCP_Server_Architecture_Sketch_v0.6_09032026.md", s: 96890 },
+            { n: "VRTI_Test_Server_Synthesis_v0.1_08032026.md", s: 21392 },
+          ]},
+          { n: "vrti-alpha-mcp/", d: true, c: 2, ch: [
+            { n: "vrti_alpha_mcp.py", s: 25398 },
+            { n: "BUILD_LOG.md", s: 19641 },
+          ]},
+          { n: "vrti-beta-mcp/", d: true, c: 2, ch: [
+            { n: "vrti_beta_mcp.py", s: 19115 },
+            { n: "BUILD_LOG.md", s: 17934 },
+          ]},
+          { n: "vrti-gamma-mcp/", d: true, c: 2, ch: [
+            { n: "vrti_gamma_mcp.py", s: 23971 },
+            { n: "BUILD_LOG.md", s: 15346 },
+          ]},
+        ]},
+        { n: "ui-ux/", d: true, c: 7, ch: [
+          { n: "Cowork_UX_Landscape_Scan_v0.1_10032026.md", s: 8200 },
+          { n: "navigator/", d: true, c: 6, ch: [
+            { n: "Workbench_Design_Note_v0.2_10032026.md", s: 18500, r: "ui-ux/navigator/Workbench_Design_Note_v0.2_10032026.md" },
+            { n: "Navigator_Design_Note_v0.1_10032026.md", s: 17312 },
+            { n: "SKILL.md", s: 9800 },
+            { n: "workspace-navigator.jsx", s: 9718 },
+            { n: "workspace-navigator-mode2.jsx", s: 72066 },
+            { n: "link-test.jsx", s: 4932 },
+          ]},
+        ]},
+        { n: "glossary/", d: true, c: 3, ch: [
+          { n: "Historians_Desktop_Glossary_v1_3_09032026.md", s: 61712 },
+          { n: "Historians_Desktop_Glossary_v1_3_09032026.html", s: 68980 },
+          { n: "index.html", s: 68980 },
+        ]},
+        { n: "docs/", d: true, c: 1, ch: [
+          { n: "Historians_Desktop_MVP_Memo_v0.2_27022026.md", s: 56061 },
+        ]},
+        { n: "skills/", d: true, c: 0, ch: [] },
+        { n: "governance/", d: true, c: 0, ch: [] },
+      ],
+    },
+  ],
+};
+
+const READABLE_CONTENT = {
+  "README.md": `<h1 id="the-historians-desktop">The Historian's Desktop</h1>
+<p><strong>An integrated research environment for historians, built on Claude Cowork.</strong></p>
+<p>The Historian's Desktop is not a chatbot for asking questions. It is a disciplinary workspace that encodes methodological knowledge, connects to archives and databases through <a href="https://modelcontextprotocol.io/">Model Context Protocol</a> (MCP) servers, and embeds the norms of good historical practice – source criticism, confidence grading, transparent processing, and human checkpoints at every stage.</p>
+<p>This repository is the working home of the <strong>AI + History Collaboratory</strong>'s Historian's Desktop initiative. It contains MCP server code, skill files, governance documents, and design materials.</p>
+<blockquote>
+<p><strong>Status:</strong> Active development. March–September 2026.</p>
+</blockquote>
+<hr>
+<h2 id="table-of-contents">Table of Contents</h2>
+<ul>
+<li><a href="#vision">Vision</a></li>
+<li><a href="#components">Components</a></li>
+<li><a href="#skills-and-workflows">Skills and Workflows</a></li>
+<li><a href="#mcp-servers">MCP Servers</a></li>
+<li><a href="#governance-files">Governance Files</a></li>
+<li><a href="#uiux-research">UI/UX Research</a></li>
+<li><a href="#cowork-as-a-research-interface">Cowork as a Research Interface</a></li>
+<li><a href="#workspace-workbench">Workspace Workbench</a></li>
+<li><a href="#repository-structure">Repository Structure</a></li>
+<li><a href="#timetable">Timetable</a></li>
+<li><a href="#contributing">Contributing</a></li>
+</ul>
+<hr>
+<h2 id="vision">Vision</h2>
+<details>
+<summary><strong>What is the Historian's Desktop?</strong></summary>
+<p>The Historian's Desktop reimagines Claude Cowork as an integrated research environment for historians. It goes beyond Ethan Mollick's framing of Cowork as a task executor for general knowledge work. The Desktop is a <strong>research partner</strong>: it holds methodological knowledge, connects to disciplinary infrastructure, and embeds the norms of good historical practice.</p>
+<p>It encompasses six capabilities:</p>
+<ul>
+<li><strong>Archive access</strong> – searching, browsing, and retrieving material from archives and historical databases through MCP servers, from within the historian's working environment.</li>
+<li><strong>Document processing</strong> – structured workflows for machine transcription (HTR/OCR), transliteration, translation, Named Entity Recognition, and contextualised summarisation.</li>
+<li><strong>Metadata management</strong> – organising archival images, variant spellings, finding aids, and bibliographic references.</li>
+<li><strong>Information monitoring</strong> – tracking publications, newsletters, and scholarly conversations through RSS/Atom feeds.</li>
+<li><strong>Project management</strong> – tracking research progress, maintaining experiment logs, and managing collaborative workflows.</li>
+<li><strong>Socratic partnership</strong> – engaging proactively with the historian to challenge assumptions, deepen analysis, and maintain methodological rigour.</li>
+</ul>
+</details>
+<details>
+<summary><strong>Design principles</strong></summary>
+<h3 id="deliberate-friction-or-rather-necessary-friction">Deliberate friction – or rather, necessary friction</h3>
+<p>The Desktop is not designed to make everything faster. It builds in human checkpoints, confidence grading, and verification tasks rather than optimising for speed. The friction Cowork introduces – conversational turn-taking, confirmation requests, the fact that the AI partner cannot silently execute ten commands and present a finished result – is structurally analogous to the friction that peer review introduces in scholarly work.</p>
+<p>Historians do not want a faster pipeline that skips the "show your working" step. They want the working to <em>be</em> the product, because that is what makes findings auditable and trustworthy. For a discipline where the audit trail <em>is</em> the scholarship, this is not a limitation – it is alignment.</p>
+<h3 id="transparent-processing">Transparent processing</h3>
+<p>Skill files are readable markdown, not black boxes. A historian can open any skill file and understand what it instructs the AI to do and why. Every design decision, every test result, every interpretive caveat is visible. A terminal session produces a command history; a Cowork session produces a <em>reasoning record</em>.</p>
+<h3 id="no-ghost-writing">No ghost-writing</h3>
+<p>The Desktop produces research documentation – entity registers, research logs, progress reports, annotated transcriptions, statistical tables – not scholarly prose. The historian's interpretive voice is theirs alone. A research memo documents what was found, how, and with what confidence. It is not a journal article, a book chapter, or a conference paper.</p>
+<h3 id="graduated-engagement">Graduated engagement</h3>
+<p>The Desktop supports a spectrum from passive use to active contribution:</p>
+<p><strong>read</strong> → <strong>install</strong> → <strong>configure</strong> → <strong>use</strong> → <strong>modify</strong> → <strong>contribute</strong></p>
+<p>Not all users will become contributors. The onboarding sequence respects this – the first session reveals 20% of capabilities, with the rest emerging through exploration.</p>
+<h3 id="confidence-grading">Confidence grading</h3>
+<p>Outputs carry explicit confidence indicators – <strong>Strong</strong>, <strong>Moderate</strong>, <strong>Weak</strong> – with the basis for each assessment stated, not just the grade. Null results are recorded. API limitations are noted. When a finding could be strengthened by tools or data not available in the session, this is stated.</p>
+<h3 id="augmenting-without-de-skilling">Augmenting without de-skilling</h3>
+<p>The Desktop teaches the historian how it works, not just what it produces. Transparent skill files, graduated friction levels, and the "no ghost-writing" principle all serve to ensure that using the Desktop builds technical confidence rather than creating dependency.</p>
+</details>
+<details>
+<summary><strong>Why Cowork, not Claude Code?</strong></summary>
+<p>The platform choice is not neutral. It encodes assumptions about the user.</p>
+<p><strong>Claude Code</strong> assumes a developer who thinks in commands, reads terminal output fluently, and values speed of execution. It is optimised for code production.</p>
+<p><strong>Cowork</strong> assumes a collaborator who thinks in conversation, values transparency, and needs the reasoning to be visible alongside the results. It is optimised for <em>collaborative reasoning that may include code production</em>.</p>
+<table>
+<thead>
+<tr>
+<th>Principle</th>
+<th>Cowork</th>
+<th>Claude Code</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Transparent processing</strong></td>
+<td>Conversation is the audit trail – every decision visible</td>
+<td>Command history exists but reasoning is implicit</td>
+</tr>
+<tr>
+<td><strong>Necessary friction</strong></td>
+<td>Natural friction from conversational turn-taking</td>
+<td>Optimised to minimise friction</td>
+</tr>
+<tr>
+<td><strong>Graduated engagement</strong></td>
+<td>Low barrier – historians read conversation</td>
+<td>Higher barrier – requires CLI comfort</td>
+</tr>
+<tr>
+<td><strong>Confidence building</strong></td>
+<td>Reasoning visible, reducing "what did the AI do?" anxiety</td>
+<td>Results appear; process less legible</td>
+</tr>
+</tbody>
+</table>
+<p>The target users are historians who need to become more technically knowledgeable – not historians who are already developers. Transparency and auditability are not nice-to-have features; they are how historians evaluate the trustworthiness of any process that produces findings.</p>
+<p>The hybrid approach also has merit: a developer might use Claude Code for rapid server construction, then bring the finished tool into Cowork for collaborative research sessions where transparency and documentation quality matter.</p>
+</details>
+<hr>
+<h2 id="components">Components</h2>
+<h3 id="skills-and-workflows">Skills and Workflows</h3>
+<details>
+<summary><strong>What are skills?</strong></summary>
+<p>Skills are reusable workflows encoded as markdown files. Each skill file contains step-by-step instructions that Claude follows when performing a specific research task. They are readable by humans and executable by AI – transparent processing in practice.</p>
+<p>Skills currently in development or use:</p>
+<table>
+<thead>
+<tr>
+<th>Skill</th>
+<th>Domain</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Old Bailey Collaborative Research</strong></td>
+<td>Criminal justice history, London 1674–1913</td>
+<td>Interview protocol, five-phase workflow, source criticism, companion dataset integration</td>
+</tr>
+<tr>
+<td><strong>ra-mcp Collaborative Research</strong></td>
+<td>Swedish archival research</td>
+<td>Five-phase workflow for structured research using the Riksarkivet MCP server</td>
+</tr>
+<tr>
+<td><strong>HTR/OCR Pipeline</strong> (V3 family)</td>
+<td>Ottoman Turkish documents</td>
+<td>Two-stage pipeline: visual capture (Gemini) then semantic processing (Claude)</td>
+</tr>
+<tr>
+<td><strong>HCA Deposition Parser</strong></td>
+<td>English maritime legal records</td>
+<td>Parsing High Court of Admiralty depositions into structured records</td>
+</tr>
+<tr>
+<td><strong>VRTI Collaborative Research</strong></td>
+<td>Irish history, linked data (CIDOC-CRM)</td>
+<td>Interview protocol, SPARQL-mediated research workflow, knowledge graph navigation, entity exploration</td>
+</tr>
+<tr>
+<td><strong>GitHub Pages from Cowork</strong></td>
+<td>Data dissemination</td>
+<td>Building and publishing static sites from Cowork sessions</td>
+</tr>
+<tr>
+<td><strong>Writing Style</strong></td>
+<td>Cross-cutting</td>
+<td>Maintaining consistent voice across research documentation</td>
+</tr>
+</tbody>
+</table>
+<p>Skills are contributed to the companion <strong><a href="https://github.com/ai-and-history-collaboratory/skills-sandbox">skills-sandbox</a></strong> repository (launching April 2026), where Collaboratory members share, test, and refine them.</p>
+</details>
+<h3 id="mcp-servers">MCP Servers</h3>
+<details>
+<summary><strong>What are MCP servers?</strong></summary>
+<p><a href="https://modelcontextprotocol.io/">Model Context Protocol</a> (MCP) servers are lightweight programs that connect Claude to external data sources – archives, databases, knowledge graphs, APIs. They translate between what Claude can ask and what the data source can answer.</p>
+<p>Each MCP server in this repository wraps a specific historical resource, providing read-only search and retrieval tools that Claude can call during a research session. The servers are designed for Claude Desktop and Claude Cowork on Windows.</p>
+</details>
+<details>
+<summary><strong>Old Bailey MCP</strong></summary>
+<p>Wraps the <a href="https://www.oldbaileyonline.org/">Old Bailey Online</a> API, providing AI-mediated access to ~197,745 trial accounts from the Central Criminal Court of England and Wales (1674–1913), the Ordinary of Newgate's Accounts (1676–1772), and associated manuscript records.</p>
+<table>
+<thead>
+<tr>
+<th>Tool</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>oldbailey_search_proceedings</code></td>
+<td>Full-text search across trial records</td>
+</tr>
+<tr>
+<td><code>oldbailey_get_record</code></td>
+<td>Retrieve a single record by reference number</td>
+</tr>
+<tr>
+<td><code>oldbailey_search_ordinarys_accounts</code></td>
+<td>Search Ordinary of Newgate's Accounts</td>
+</tr>
+<tr>
+<td><code>oldbailey_search_associated_records</code></td>
+<td>Search associated manuscript records</td>
+</tr>
+<tr>
+<td><code>oldbailey_parse_titles</code></td>
+<td>Parse title strings into defendants, offences, dates</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Status:</strong> Built and tested. Option A (pure API wrapper) complete. Option B (local XML index) planned.</p>
+<p><strong>Evidential status:</strong> The Proceedings are a published, edited source – not verbatim court transcripts. Recording practice changed dramatically across 240 years.</p>
+</details>
+<details>
+<summary><strong>VRTI MCP (Virtual Record Treasury of Ireland)</strong></summary>
+<p>Wraps the <a href="https://virtualtreasury.ie/">VRTI Knowledge Graph</a> SPARQL endpoint, providing AI-mediated access to a linked-data reconstruction of the archival collections destroyed in the 1922 Four Courts fire. The VRTI contains 2.9 million triples, 10,624 persons, 132,348 places, and 1.2 million links to Wikidata and other LOD sources, modelled using CIDOC-CRM.</p>
+<p>The VRTI servers are architecturally distinct from the text-corpus servers (Old Bailey, Riksarkivet): they query a knowledge graph via SPARQL rather than a search API via REST. This makes the VRTI a critical testbed for proving that the Historian's Desktop architecture works across data paradigms.</p>
+<p><strong>Three test servers</strong> were built in an iterative sequence (8 March 2026), each inheriting patterns from its predecessor and solving one new problem:</p>
+<table>
+<thead>
+<tr>
+<th>Server</th>
+<th>Tool</th>
+<th>What it proves</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Gamma</strong> (entity inspector)</td>
+<td><code>vrti_inspect_entity</code></td>
+<td>The plumbing works: Python → SPARQLWrapper → Virtuoso → Markdown</td>
+</tr>
+<tr>
+<td><strong>Alpha</strong> (gender by century)</td>
+<td><code>vrti_gender_by_century</code></td>
+<td>Aggregation works, triple namespace problem solved, dynamic discovery viable</td>
+</tr>
+<tr>
+<td><strong>Beta</strong> (person lookup)</td>
+<td><code>vrti_find_person</code></td>
+<td>The appellation hop works: CIDOC-CRM name search is a solvable query pattern</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Key technical finding:</strong> CIDOC-CRM stores names as separate Appellation entities, not string properties. Name search requires a two-hop query – the defining pattern for any CIDOC-CRM knowledge graph.</p>
+<p><strong>Key analytical finding:</strong> The gender-by-century cross-tabulation revealed a U-shaped curve in female representation (high in the 6th century via hagiographical sources, collapsing through the medieval period, recovering in the modern era) and a 15th-century nadir (1.1% female). These patterns are properties of the knowledge graph's source base and editorial scope – analytically important in themselves.</p>
+<p><strong>Status:</strong> All three servers built, unit-tested (30/30), and live-tested (10/10). Alpha installed and tested in Claude Desktop. Production server design in progress.</p>
+</details>
+<details>
+<summary><strong>Other MCP servers in the Collaboratory ecosystem</strong></summary>
+<p>These servers are developed and maintained in separate repositories but form part of the Historian's Desktop's planned MCP connector suite:</p>
+<table>
+<thead>
+<tr>
+<th>Server</th>
+<th>Repository</th>
+<th>Data source</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>ra-mcp</strong> (Riksarkivet)</td>
+<td><a href="https://github.com/cjgreenstreet/ra-mcp">ra-mcp</a></td>
+<td>AI-transcribed Swedish National Archives holdings</td>
+</tr>
+<tr>
+<td><strong>MarineLives MCP</strong></td>
+<td><em>In development</em></td>
+<td>MarineLives Semantic MediaWiki (English maritime legal records)</td>
+</tr>
+<tr>
+<td><strong>RSS Reader MCP</strong></td>
+<td><em>Private</em></td>
+<td>Newsletter and blog feeds for information monitoring</td>
+</tr>
+</tbody>
+</table>
+</details>
+<h3 id="governance-files">Governance Files</h3>
+<details>
+<summary><strong>What are governance files?</strong></summary>
+<p>Governance files control how the AI research partner behaves during a session. They are the mechanism by which the Historian's Desktop encodes disciplinary norms – source criticism, confidence grading, scope monitoring, researcher authority – into the AI's operating instructions.</p>
+<p>Three types of governance file work together:</p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Location</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>CLAUDE.md</strong></td>
+<td>Repository root</td>
+<td>Global safety rules, naming conventions, project context</td>
+</tr>
+<tr>
+<td><strong>Rules files</strong></td>
+<td><code>.claude/rules/</code></td>
+<td>Domain-specific and cross-cutting behavioural instructions, loaded automatically at session start</td>
+</tr>
+<tr>
+<td><strong>Skill files</strong></td>
+<td>Within each skill directory</td>
+<td>Reusable research workflows with step-by-step protocols</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Cross-cutting rules</strong> (apply across all research domains):</p>
+<ul>
+<li><code>research-conduct.md</code> – Historiographical orientation, scope monitoring, researcher authority, source attribution, confidence grading</li>
+<li><code>plugins.md</code> – Installed plugin documentation and capabilities</li>
+</ul>
+<p><strong>Domain-specific rules</strong> (apply within their topic area):</p>
+<ul>
+<li><code>old-bailey-mcp.md</code> – Old Bailey server tools, skill activation triggers, search syntax</li>
+<li><code>ra-mcp.md</code> – Riksarkivet server tools, collaborative research workflow</li>
+<li><code>marinelives-mcp.md</code> – MarineLives server, HCA deposition corpus</li>
+<li><code>ottoman-htr-pipeline.md</code> – Two-stage HTR/OCR pipeline architecture</li>
+<li><code>historians-desktop.md</code> – Desktop design principles, MVP structure, activation triggers</li>
+</ul>
+<p>The governance layer is what distinguishes the Historian's Desktop from a generic AI assistant. A generic assistant might search the Old Bailey and return results. The governed Desktop searches the Old Bailey <em>after</em> establishing the historiographical context, <em>with</em> source-critical caveats embedded in every output, <em>while</em> monitoring whether the research has expanded beyond its original scope.</p>
+</details>
+<hr>
+<h2 id="uiux-research">UI/UX Research</h2>
+<p>The Historian's Desktop is built on <a href="https://claude.ai/">Claude Cowork</a>, Anthropic's desktop application for collaborative AI work sessions. Cowork launched on Mac in January 2026 and on Windows in February 2026. It runs Claude Code inside a lightweight Linux VM, providing agentic capabilities – file creation, code execution, web search – through a conversational interface rather than a command line.</p>
+<p>This raises a question that nobody appears to have addressed yet: <strong>how should Cowork's interface be designed for disciplinary research work?</strong> The <code>ui-ux/</code> folder collects our explorations of this question – from landscape research on how others are using Cowork, to concrete experiments with artifacts, navigation, and in-session document reading.</p>
+<p>Key finding from our initial scan: the strongest external validation of the skill-file-as-methodology approach comes from Xule Lin's argument (Imperial Business School) that the gap in AI-augmented knowledge work is not execution capability but structured methodology. Skill files are, in effect, a user interface – they structure the interaction between historian and AI partner.</p>
+<p>For the full landscape scan, see <strong><a href="ui-ux/Cowork_UX_Landscape_Scan_v0.1_10032026.md">Cowork UX Landscape Scan</a></strong>.</p>
+<h3 id="workspace-workbench">Workspace Workbench</h3>
+<p>We are developing a <strong>workspace workbench</strong> – a three-panel research interface that runs inside the Cowork artifact pane, combining a file browser, a document and image viewing area, and a session configuration toolbar.</p>
+<p>The workbench addresses a practical problem: during a Cowork session, orienting yourself to a multi-folder repository currently requires either opening a separate file browser or asking the AI partner to list files one at a time. The workbench provides a visual file tree (left panel) with click-to-read functionality for curated documents (right panel), plus a collapsible toolbar (bottom panel) showing which MCP servers and research skills are active for the current session.</p>
+<p>The original concept was a simple file navigator. Through iterative prototyping, it evolved into something more ambitious: a surface that holds the tools, the materials, and the working notes for a research session. The viewing area is designed to eventually render not just documents but manuscript images (via IIIF), maps, and network diagrams — reflecting the visual nature of historical research. That visual capability is deferred until real usage generates concrete requirements (planned review: July 2026).</p>
+<p>For the full design rationale, test results, architecture, and open questions, see the <strong><a href="ui-ux/navigator/Workbench_Design_Note_v0.2_10032026.md">Workbench Design Note</a></strong>.</p>
+<hr>
+<h2 id="repository-structure">Repository Structure</h2>
+<pre><code>historians-desktop/
+├── README.md
+├── old-bailey-mcp/                     ← Old Bailey Online MCP server
+│   ├── old_bailey_mcp.py                  Server code (Option A: API wrapper)
+│   ├── requirements.txt                   Python dependencies
+│   ├── setup.bat                          Windows setup script
+│   ├── test_api_operators.py              API operator verification tests
+│   └── README.md                          Installation and usage
+├── vrti-mcp/                            ← VRTI Knowledge Graph MCP servers
+│   ├── README.md                          Overview and architecture
+│   ├── design-docs/                       Architecture sketches, captured documentation
+│   │   ├── VRTI_MCP_Server_Architecture_Sketch_v0.6_09032026.md
+│   │   ├── VRTI_Test_Server_Synthesis_v0.1_08032026.md
+│   │   └── ...                               (5 more captured reference docs)
+│   ├── vrti-alpha-mcp/                    Gender by century (aggregation)
+│   │   ├── vrti_alpha_mcp.py                 Server code
+│   │   └── BUILD_LOG.md                      Build diary and test results
+│   ├── vrti-beta-mcp/                     Person lookup by name (search)
+│   │   ├── vrti_beta_mcp.py                  Server code
+│   │   └── BUILD_LOG.md                      Build diary and test results
+│   └── vrti-gamma-mcp/                    Entity inspector (plumbing)
+│       ├── vrti_gamma_mcp.py                 Server code
+│       └── BUILD_LOG.md                      Build diary and test results
+├── ui-ux/                              ← UI/UX research and experiments
+│   ├── Cowork_UX_Landscape_Scan_v0.1_10032026.md  Who is using Cowork and how?
+│   └── navigator/                         Workspace workbench (three-panel research interface)
+│       ├── Workbench_Design_Note_v0.2_10032026.md  Design rationale and open questions
+│       ├── Navigator_Design_Note_v0.1_10032026.md  Superseded by Workbench Design Note v0.2
+│       ├── SKILL.md                          Workbench skill file (v2.0 – Mode 1 and Mode 2)
+│       ├── workspace-navigator.jsx           Mode 1 prototype (tree only)
+│       ├── workspace-navigator-mode2.jsx     Mode 2 prototype (tree with viewing pane)
+│       └── link-test.jsx                     Link behaviour test artifact
+├── glossary/                            ← Historian's Desktop glossary
+│   ├── Historians_Desktop_Glossary_v1_3_09032026.md
+│   ├── Historians_Desktop_Glossary_v1_3_09032026.html
+│   └── index.html                         GitHub Pages entry point
+├── docs/                                ← Design documents and planning materials
+│   └── Historians_Desktop_MVP_Memo_v0.2_27022026.md
+├── skills/                              ← Skill files (research workflows)
+│   └── .gitkeep
+└── governance/                          ← Governance file templates and examples
+    └── .gitkeep
+</code></pre>
+<hr>
+<h2 id="timetable">Timetable</h2>
+<details>
+<summary><strong>March 2026 – Foundation</strong></summary>
+<ul>
+<li>Finalise repository structure and seed with existing MCP servers (Old Bailey, VRTI test servers)</li>
+<li>Complete VRTI test server polish (era display, matched name improvements)</li>
+<li>Contact TCD ADAPT Centre (David Brown) about VRTI MCP collaboration</li>
+<li>Remaining VRTI endpoint reconnaissance (VoID description, REST API test, rate behaviour)</li>
+<li>Workspace workbench prototype: three-panel research interface with session configuration (10 March)</li>
+<li>Tim Hitchcock (co-creator of Old Bailey Online) has agreed to discuss Old Bailey MCP server and a potential Old Bailey Voices MCP server</li>
+<li>Share repository with Jacob Forward for design conversation</li>
+<li><strong>31 March: Session 4 – Cowork for Historians: Skills and Workflows</strong></li>
+</ul>
+</details>
+<details>
+<summary><strong>April 2026 – Skills Repository launches</strong></summary>
+<ul>
+<li><strong>skills-sandbox</strong> repository goes live (private, Collaboratory members)</li>
+<li>Members begin contributing skill files to <code>sandbox/</code> directories</li>
+<li>Decision on Session 5 topic</li>
+<li>Desktop architecture sketch drafted</li>
+<li>UI/UX education session (Colin)</li>
+<li>Monitor Anthropic platform developments (Cowork plugin architecture, MCP evolution)</li>
+<li><strong>Late April: Session 5 – topic TBD</strong></li>
+</ul>
+</details>
+<details>
+<summary><strong>May 2026 – First reviews, prototype begins</strong></summary>
+<ul>
+<li>First editorial reviews of sandbox skills</li>
+<li>Desktop prototype development begins</li>
+<li>First 2–3 skills promoted from sandbox to reviewed status</li>
+<li>Desktop prototype testing (Colin, then Jacob)</li>
+<li><strong>Late May: Session 6 – Skills/Tools/Knowledge</strong></li>
+</ul>
+</details>
+<details>
+<summary><strong>June 2026 – Wider testing</strong></summary>
+<ul>
+<li>Desktop prototype shared with Mark Thompson, Frédéric Madore</li>
+<li>History Hackathon (if held) – Desktop as one activity</li>
+<li>Repository public/private decision</li>
+<li><strong>30 June: MILESTONE – How many active users? What works?</strong></li>
+</ul>
+</details>
+<details>
+<summary><strong>July–September 2026 – Evaluation</strong></summary>
+<ul>
+<li>Desktop POC evaluation and iteration</li>
+<li>August: Summer break (reduced activity)</li>
+<li>September: Go/no-go for broader release; Season 2 planning begins</li>
+<li><strong>Success criterion: 8–10 Collaboratory members actively using the Desktop</strong></li>
+</ul>
+</details>
+<hr>
+<h2 id="contributing">Contributing</h2>
+<p>The Historian's Desktop is a project of the <a href="https://ai-and-history-collaboratory.github.io/">AI + History Collaboratory</a>. Contributions are welcome from Collaboratory members.</p>
+<p>The companion <strong><a href="https://github.com/ai-and-history-collaboratory/skills-sandbox">skills-sandbox</a></strong> repository is the place to contribute, test, and refine skill files for historical research.</p>
+<p>For MCP server contributions, design discussions, or governance questions, open an issue in this repository or raise the topic in the Collaboratory's Slack workspace.</p>
+<hr>
+<p><em>Built with Claude Cowork. The development process – including the iterative VRTI server build that proved the architecture and the workspace workbench prototyping that explored research interface design – is documented in the build logs, the <a href="vrti-mcp/design-docs/VRTI_Test_Server_Synthesis_v0.1_08032026.md">VRTI synthesis memo</a>, and the <a href="ui-ux/navigator/Workbench_Design_Note_v0.2_10032026.md">Workbench Design Note</a>.</em></p>`,
+  "ui-ux/navigator/Workbench_Design_Note_v0.2_10032026.md": `<h1 id="workspace-workbench-design-note">Workspace Workbench — Design Note</h1>
+<p><strong>Version:</strong> 0.2
+<strong>Date:</strong> 10 March 2026
+<strong>Author:</strong> Colin Greenstreet with Claude (Opus 4.6)
+<strong>Status:</strong> Proposal for discussion
+<strong>Supersedes:</strong> Navigator Design Note v0.1 (10 March 2026)</p>
+<hr>
+<h2 id="table-of-contents">Table of Contents</h2>
+<ul>
+<li><a href="#1-what-this-document-is">1. What this document is</a></li>
+<li><a href="#2-why-workbench-not-navigator">2. Why "Workbench" not "Navigator"</a></li>
+<li><a href="#3-the-problem">3. The problem</a></li>
+<li><a href="#4-the-cowork-screen-layout">4. The Cowork screen layout</a></li>
+<li><a href="#5-what-we-tested">5. What we tested</a></li>
+<li><a href="#6-current-design">6. Current design</a></li>
+<li><a href="#61-two-modes">6.1 Two modes</a></li>
+<li><a href="#62-three-panel-layout">6.2 Three-panel layout</a></li>
+<li><a href="#63-session-configuration-toolbar">6.3 Session configuration toolbar</a></li>
+<li><a href="#64-scoping-dialogue">6.4 Scoping dialogue</a></li>
+<li><a href="#65-snapshot-not-live-view">6.5 Snapshot, not live view</a></li>
+<li><a href="#66-persistence-across-sessions">6.6 Persistence across sessions</a></li>
+<li><a href="#7-the-viewing-area-beyond-documents">7. The viewing area: beyond documents</a></li>
+<li><a href="#8-what-the-readable-set-includes">8. What the readable set includes</a></li>
+<li><a href="#9-constraints-and-trade-offs">9. Constraints and trade-offs</a></li>
+<li><a href="#10-open-questions-for-discussion">10. Open questions for discussion</a></li>
+<li><a href="#11-what-we-are-not-building-yet">11. What we are not building yet</a></li>
+<li><a href="#12-next-steps">12. Next steps</a></li>
+</ul>
+<hr>
+<h2 id="1-what-this-document-is">1. What this document is</h2>
+<p>This design note proposes a <strong>workspace workbench</strong> for the Historian's Desktop — an interactive research interface that runs inside a Cowork session, combining a file browser, a document and image viewing area, and a session configuration toolbar. It is written for Collaboratory members who may not yet be familiar with how Cowork renders visual content. The note describes the problem, the rendering environment, what we have built and tested so far, and the open questions we would like the team to discuss.</p>
+<p>This is version 0.2. It supersedes the Navigator Design Note v0.1, which described a simpler file-browser-with-reading-pane concept. The design has evolved through iterative prototyping during a single extended Cowork session (10 March 2026) into something more ambitious: a three-panel research interface with session-level configuration.</p>
+<hr>
+<h2 id="2-why-workbench-not-navigator">2. Why "Workbench" not "Navigator"</h2>
+<p>The original prototype was a file tree with click-to-read — a navigator. It navigated the workspace, and the name was accurate.</p>
+<p>The design that has emerged through prototyping is something different. It has three functional zones: a file tree for orientation, a large viewing area that could render documents, manuscript images, maps, or network diagrams, and a configuration toolbar showing which MCP servers and research skills are active for the current session. This is not a navigator. It is a workbench — a surface that holds the tools, the materials, and the working notes for a research session.</p>
+<p>The workbench metaphor also aligns with digital humanities precedent. The German <em>Werkbank</em> tradition and the broader "digital workbench" concept in computational humanities describe environments where scholars assemble tools around materials, rather than navigating through a fixed interface. The Historian's Desktop, at its most ambitious, is exactly this.</p>
+<p>We rename now because the term has had minimal external exposure — only Colin and the development conversation. Renaming later, after Collaboratory members have absorbed the vocabulary, would be more disruptive.</p>
+<hr>
+<h2 id="3-the-problem">3. The problem</h2>
+<p>During a Cowork session, the historian works in a full-screen conversational interface. The default view is a single conversation pane with collapsible panels for progress tracking and context. When Claude Cowork generates visual content — a chart, a rendered document, an interactive component — an artifact pane opens on the right side of the screen.</p>
+<p>The challenge is orientation. The <code>historians-desktop</code> repository contains MCP server code, design documents, glossaries, skill files, and governance templates spread across multiple subfolders. During a session, seeing what is in the repository and reading key documents currently requires either opening a separate file browser window or asking the AI partner to list and read files one at a time in the conversation thread.</p>
+<p>We want something better: a visual interface that the historian can browse, with the ability to view key documents, and — eventually — images, maps, and other research materials, all within the Cowork screen without switching applications.</p>
+<hr>
+<h2 id="4-the-cowork-screen-layout">4. The Cowork screen layout</h2>
+<p>For those unfamiliar with Cowork's visual layout:</p>
+<p>Cowork runs as a desktop application. Its <strong>default layout</strong> is a single conversation pane with concertina-style collapsible panels for Progress, Scratchpad, and Context. An optional narrow sidebar on the left edge provides buttons for common actions.</p>
+<p>The key feature is the <strong>artifact pane</strong>. When Cowork generates visual content — a React component, HTML page, or chart — it opens a second region on the right side of the screen, replacing the concertina panels. The boundary between conversation and artifact is adjustable via a horizontal drag bar, from a narrow column to most of the screen width.</p>
+<p>The artifact pane displays one artifact at a time — no tabs, no internal splitting. A new artifact replaces the previous one. The user can scroll back in the conversation to find earlier artifacts.</p>
+<p>Artifacts are <strong>sandboxed</strong> in an iframe with restricted permissions. They cannot read the filesystem, make network calls, or communicate back to the conversation. Any content the workbench displays must be embedded at build time.</p>
+<hr>
+<h2 id="5-what-we-tested">5. What we tested</h2>
+<p>We built a test artifact containing clickable links to files in this repository, using four different approaches: anchor tags with <code>target="_blank"</code>, anchor tags without a target, <code>window.open()</code> calls, and clipboard copy.</p>
+<p>The anchor tag approaches trigger navigation but Cowork intercepts the click and presents a permission dialogue asking the user to confirm they want to open an external link. If the user confirms, the file opens in a new window outside Cowork. The <code>window.open()</code> approach is blocked by the iframe sandbox. The clipboard copy approach works but is clunky.</p>
+<p><strong>Conclusion:</strong> External links break the workflow. The workbench needs to display content inside the artifact pane, not link to external windows. For the standalone GitHub Pages version, all links within the viewing area are intercepted: fragment links scroll within the document, and external URLs are silently blocked.</p>
+<hr>
+<h2 id="6-current-design">6. Current design</h2>
+<h3 id="61-two-modes">6.1 Two modes</h3>
+<p>The workbench offers two modes, chosen at build time:</p>
+<p><strong>Mode 1 — Tree only.</strong> Displays the folder structure with file names, sizes, and file type badges. No embedded content, no clickable reading. Lightweight and fast to generate.</p>
+<p><strong>Mode 2 — Tree with viewable content.</strong> The same folder tree, but a curated set of files have their content pre-rendered as HTML and embedded in the artifact's data. Clicking one of these files opens it in the viewing area alongside the tree. Files not in the viewable set appear in the tree but are not clickable.</p>
+<h3 id="62-three-panel-layout">6.2 Three-panel layout</h3>
+<p>The Mode 2 workbench uses a three-panel layout:</p>
+<p><strong>Left panel — File tree.</strong> The repository structure with expandable folders, file type badges, and size indicators. Files in the viewable set are highlighted in blue with a "▸ read" indicator. The tree remains visible when a document is open, providing persistent orientation.</p>
+<p><strong>Main panel — Viewing area.</strong> Displays the selected document (or, in future, image, map, or diagram). A draggable vertical divider between the tree and viewing area lets the user control the split. A close button returns to the tree-only view.</p>
+<p><strong>Bottom panel — Session configuration toolbar.</strong> A collapsible, vertically resizable strip showing which MCP servers and research skills are active for the current session. The toolbar has three columns: MCP Servers (with toggle switches and connected/available badges), Research Skills (with toggle switches and active/installed badges), and Session Notes (a customisable area for research focus, session metadata, and query counts).</p>
+<p>The three-panel layout was not planned. It emerged during prototyping when the browser's console panel created a visible "third pane" at the bottom of the screen, prompting the question: what would be useful to show there? The answer — session configuration — turned out to be a natural fit for a research environment where the historian needs to know which tools and workflows are engaged.</p>
+<h3 id="63-session-configuration-toolbar">6.3 Session configuration toolbar</h3>
+<p>The bottom toolbar serves two purposes. First, it provides at-a-glance awareness of the current session's configuration — which MCP servers are connected and which research skills are active. Second, it provides (or will provide, when the workbench is integrated with Cowork) toggle controls for activating and deactivating servers and skills mid-session.</p>
+<p>In the current standalone HTML prototype, the toggles are functional as UI elements but do not actually connect or disconnect anything. They demonstrate the interaction pattern and the visual design.</p>
+<p>The toolbar is collapsible (click the header to expand or collapse) and vertically resizable (drag the top edge to make it taller or shorter). When collapsed, it shows a summary line: "5 active · 2 servers · 2 skills".</p>
+<h3 id="64-scoping-dialogue">6.4 Scoping dialogue</h3>
+<p>Before building the workbench, the AI partner scans the top-level folders in the workspace and presents them as choices. The user selects which folder (or folders) the workbench should cover and whether they want Mode 1 or Mode 2. If Mode 2, the AI partner identifies candidate files for the viewable set and confirms the list before proceeding.</p>
+<h3 id="65-snapshot-not-live-view">6.5 Snapshot, not live view</h3>
+<p>The workbench is a snapshot — a picture of the repository at the moment it was built. It does not update automatically. If files change during a session, the user asks for a refresh. This is a deliberate choice: a live-updating workbench would require continuous filesystem access (which the artifact sandbox prohibits) or frequent regeneration (which would consume tokens).</p>
+<p>Every workbench displays a prominent timestamp showing when it was built.</p>
+<h3 id="66-persistence-across-sessions">6.6 Persistence across sessions</h3>
+<p>The workbench artifact is saved to the workspace folder and persists on disk. A new session can present the existing workbench without regeneration, noting the timestamp so the user can decide whether a refresh is needed. A workbench built by one collaborator is available to another via the git repository.</p>
+<hr>
+<h2 id="7-the-viewing-area-beyond-documents">7. The viewing area: beyond documents</h2>
+<p>The current prototype renders pre-converted markdown as HTML in the viewing area. But the conversation that produced this design raised a more ambitious question: what else should the viewing area be able to display?</p>
+<p>Historians — in contrast to, say, lawyers — work extensively with visual material. Maps, manuscript images, architectural plans, network diagrams, family trees, trade route visualisations. An Ottoman newspaper page with its multi-column layout and decorated masthead. A network diagram showing witness relationships in High Court of Admiralty depositions. A IIIF-served manuscript image with zoomable high-resolution detail.</p>
+<p>The viewing area could support multiple content types if the data structure carried a type field — <code>"markdown"</code>, <code>"iiif-image"</code>, <code>"map"</code>, <code>"network"</code>. The viewing area would switch renderer accordingly: converted HTML for markdown, an OpenSeadragon component for IIIF images, a Leaflet instance for maps, a D3 force layout for networks.</p>
+<p><strong>We are not building this yet.</strong> The decision taken on 10 March 2026 is that the UI/UX design has reached the limit of what can be productively explored without real user feedback. Only once historians begin using the basic functionality — MCP servers and skill files on their own actual research projects over the next three months — will we have the concrete requests and friction reports that should drive interface design. The UI/UX should be reviewed in July 2026, informed by real usage.</p>
+<p>This section records the vision so that it is not lost when that review happens.</p>
+<hr>
+<h2 id="8-what-the-readable-set-includes">8. What the readable set includes</h2>
+<p>Not every file in the repository needs to be viewable through the workbench. The target is a small curated set — the documents a new collaborator would want to read when orienting themselves to the project:</p>
+<ul>
+<li><strong>README.md</strong> — the repository's front page</li>
+<li><strong>SKILL.md files</strong> — workflow descriptions for skills in development</li>
+<li><strong>Design memos and architecture documents</strong> — the thinking behind the tools</li>
+<li><strong>BUILD_LOG.md files</strong> — development diaries for MCP servers</li>
+</ul>
+<p>Code files, binary files, and very large documents are excluded. They appear in the tree with their names and sizes but are not clickable. The boundary is configurable.</p>
+<p>For markdown files, content is pre-rendered to HTML at build time using a Python build script with the <code>markdown</code> library and the <code>md_in_html</code> extension (for proper rendering of markdown inside <code>&lt;details&gt;</code> blocks). This means the viewing area displays formatted text with headings, tables, code blocks, and collapsible sections — not raw markdown syntax.</p>
+<hr>
+<h2 id="9-constraints-and-trade-offs">9. Constraints and trade-offs</h2>
+<p><strong>Token cost.</strong> Mode 2 is more expensive than Mode 1. Each viewable file must be read, converted to HTML, and embedded. For a repository with five to ten readable documents totalling 100–200KB of markdown, this is manageable. The scoping dialogue and the curated viewable set are the primary mechanisms for controlling cost.</p>
+<p><strong>Artifact size.</strong> There is a practical ceiling on artifact size before rendering slows. The current Mode 2 prototype with two embedded documents is approximately 77KB of HTML — well within limits. Very large embedded documents or many documents in a single workbench could approach the ceiling.</p>
+<p><strong>No bidirectional communication.</strong> The artifact cannot send information back to the conversation. Clicks within the workbench do not trigger the AI partner. The workbench is self-contained.</p>
+<p><strong>One artifact at a time.</strong> Generating a new artifact replaces the workbench. The user can ask for regeneration, but there is no way to pin the workbench while working with other visual content.</p>
+<p><strong>Standalone vs in-Cowork gap.</strong> The standalone HTML version (for GitHub Pages) and the Cowork artifact version have different constraints. The standalone version runs in a full browser window and can use a split layout with a draggable divider. The Cowork version runs in the artifact pane, which is narrower and sits alongside the conversation. Features that work well in one context may not work in the other.</p>
+<hr>
+<h2 id="10-open-questions-for-discussion">10. Open questions for discussion</h2>
+<p><strong>10a. Is "Workbench" the right term?</strong> The name emerged from the development conversation. Alternatives considered: Dashboard (too analytics-focused), Research Desk (too close to Desktop), Session View (functional but flat). "Workbench" carries the right connotation — a surface that holds tools and materials — but it may not resonate with all users. Worth testing with the team.</p>
+<p><strong>10b. What belongs in the session configuration toolbar?</strong> The current prototype has three columns: MCP Servers, Research Skills, and Session Notes. The Session Notes column is a placeholder. What would historians actually want to see there? A running log of searches performed? A list of records retrieved? Notes to self? The answer should come from real usage, not design speculation.</p>
+<p><strong>10c. Should the standalone HTML version match the Cowork artifact version?</strong> The standalone version is for GitHub Pages — a public-facing demonstration. The Cowork artifact is the working tool. They could diverge deliberately: the standalone version optimised for presentation, the Cowork version optimised for session use. Or they could be kept in sync to reduce maintenance burden. The decision depends on how much the audience for each version overlaps.</p>
+<p><strong>10d. When should visual content types be added?</strong> The viewing area could render IIIF images, maps, and network diagrams. But adding each content type means shipping a renderer (OpenSeadragon, Leaflet, D3) and designing the data structure to carry type information. This should be driven by concrete use cases, not speculative capability. The question for July: which visual content type would have saved the most time or produced the most insight in the preceding three months of research?</p>
+<p><strong>10e. How does the workbench relate to Cowork's own interface evolution?</strong> Anthropic is actively developing Cowork. Features we are building into the workbench — session configuration, file browsing, document viewing — might be absorbed into the platform itself. The workbench should be designed as a complement to Cowork, not a replacement for capabilities that Anthropic may provide natively.</p>
+<hr>
+<h2 id="11-what-we-are-not-building-yet">11. What we are not building yet</h2>
+<p>This section records design directions that emerged during prototyping but are explicitly deferred to the July 2026 UI/UX review.</p>
+<p><strong>Visual content renderers.</strong> IIIF image viewing (OpenSeadragon), map rendering (Leaflet), network diagrams (D3). Deferred until real use cases establish which content type would add the most value.</p>
+<p><strong>Bidirectional communication.</strong> The ability for the workbench to send events back to the conversation (e.g., "the user clicked this record — retrieve the full text"). This is architecturally impossible within the current Cowork artifact sandbox. If Anthropic introduces artifact-to-conversation messaging, this becomes the highest-priority enhancement.</p>
+<p><strong>Theming and branding.</strong> Custom colours, fonts, and visual identity for the Historian's Desktop. The current dark-on-dark colour scheme matches Cowork's own aesthetic. A distinctive visual identity would help the Desktop feel like a product rather than a generic artifact.</p>
+<p><strong>Search within the workbench.</strong> Text filtering of the file tree, or full-text search across embedded document content. Useful but not essential at this stage.</p>
+<hr>
+<h2 id="12-next-steps">12. Next steps</h2>
+<ol>
+<li>Push the current standalone prototype and this design note to the public repository.</li>
+<li>Share with Jacob Forward for design feedback.</li>
+<li>Focus development effort on MCP servers and skill files — the research infrastructure that the workbench will eventually surface.</li>
+<li>Revisit UI/UX design in July 2026, informed by three months of actual research usage.</li>
+<li>Prepare for the Tim Hitchcock conversation on the Old Bailey MCP server and a potential Old Bailey Voices MCP server.</li>
+</ol>
+<hr>
+<p><em>This design note emerged from an extended Cowork session (10 March 2026) in which we iterated from a simple file browser through a split-panel document reader to a three-panel research interface with session configuration. The evolution was not planned — it was driven by what felt right as each prototype was tested. The decision to pause UI/UX work and focus on research infrastructure was equally unplanned, and equally right.</em></p>`,
+};
+// --- DATA_END ---
+
+// ============================================================
+// UI CODE below
+// ============================================================
+
+const ICONS = { upload: "⬆", download: "⬇", book: "📖", star: "⭐", "package": "📦", lightbulb: "💡", folder: "🗂" };
+
+const EXT = {
+  md: ["MD", "#6b9bd2"], py: ["PY", "#4b8bbe"], js: ["JS", "#f0db4f"],
+  jsx: ["JSX", "#61dafb"], json: ["JSN", "#a0a0a0"], xml: ["XML", "#d4764e"],
+  html: ["HTM", "#e34c26"], txt: ["TXT", "#888"], skill: ["SKL", "#9b6bb5"],
+  sh: ["SH", "#4eaa25"], pdf: ["PDF", "#d44"], csv: ["CSV", "#5a9"],
+  docx: ["DOC", "#2b579a"], xlsx: ["XLS", "#217346"], pptx: ["PPT", "#d24726"],
+  png: ["PNG", "#a855f7"], bat: ["BAT", "#60a5fa"],
+};
+
+function fmtSize(b) {
+  if (!b) return "";
+  if (b < 1024) return b + " B";
+  if (b < 1048576) return (b / 1024).toFixed(1) + " KB";
+  return (b / 1048576).toFixed(1) + " MB";
+}
+
+function fmtTime(iso) {
+  try {
+    const d = new Date(iso);
+    return d.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }) +
+      " \u00b7 " + d.toLocaleDateString([], { day: "numeric", month: "short", year: "numeric" });
+  } catch { return iso; }
+}
+
+function getExt(name) {
+  const i = name.lastIndexOf(".");
+  return i > 0 ? name.slice(i + 1).toLowerCase() : "";
+}
+
+function Badge({ name }) {
+  const e = getExt(name);
+  const [label, color] = EXT[e] || [e.toUpperCase().slice(0, 3) || "?", "#666"];
+  return (
+    <span style={{
+      display: "inline-flex", alignItems: "center", justifyContent: "center",
+      width: 28, height: 16, borderRadius: 3, fontSize: 7, fontWeight: 700,
+      fontFamily: "monospace", letterSpacing: -0.3, flexShrink: 0,
+      backgroundColor: color + "18", border: `1px solid ${color}40`, color,
+    }}>{label}</span>
+  );
+}
+
+const DOC_STYLES = `
+  .doc-content { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; color: #ccc; line-height: 1.6; padding: 0; }
+  .doc-content h1 { font-size: 22px; font-weight: 700; color: #e0e0e0; margin: 24px 0 12px 0; padding-bottom: 6px; border-bottom: 1px solid #2a2a2a; }
+  .doc-content h2 { font-size: 18px; font-weight: 700; color: #d0d0d0; margin: 20px 0 10px 0; padding-bottom: 4px; border-bottom: 1px solid #222; }
+  .doc-content h3 { font-size: 15px; font-weight: 600; color: #c0c0c0; margin: 16px 0 8px 0; }
+  .doc-content h4 { font-size: 13px; font-weight: 600; color: #b0b0b0; margin: 14px 0 6px 0; }
+  .doc-content p { margin: 8px 0; font-size: 13.5px; }
+  .doc-content ul, .doc-content ol { margin: 8px 0; padding-left: 24px; font-size: 13.5px; }
+  .doc-content li { margin: 4px 0; }
+  .doc-content a { color: #6b9bd2; text-decoration: underline; }
+  .doc-content code { background: #1a1a1a; padding: 2px 5px; border-radius: 3px; font-size: 12px; font-family: 'SF Mono', 'Cascadia Code', Consolas, monospace; color: #d4a; }
+  .doc-content pre { background: #111; border: 1px solid #222; border-radius: 4px; padding: 12px; overflow-x: auto; margin: 12px 0; }
+  .doc-content pre code { background: none; padding: 0; font-size: 11.5px; color: #aaa; }
+  .doc-content table { border-collapse: collapse; width: 100%; margin: 12px 0; font-size: 12.5px; }
+  .doc-content th { text-align: left; padding: 6px 10px; border-bottom: 2px solid #333; color: #bbb; font-weight: 600; background: #141414; }
+  .doc-content td { padding: 5px 10px; border-bottom: 1px solid #1c1c1c; color: #999; }
+  .doc-content tr:hover td { background: #0f0f0f; }
+  .doc-content blockquote { border-left: 3px solid #333; margin: 12px 0; padding: 4px 12px; color: #888; }
+  .doc-content strong { color: #ddd; }
+  .doc-content hr { border: none; border-top: 1px solid #222; margin: 16px 0; }
+  .doc-content details { margin: 10px 0; border: 1px solid #1c1c1c; border-radius: 4px; }
+  .doc-content details[open] { padding-bottom: 8px; }
+  .doc-content summary { cursor: pointer; font-weight: 600; color: #bbb; padding: 8px 12px; list-style: none; }
+  .doc-content summary::-webkit-details-marker { display: none; }
+  .doc-content summary::before { content: "\\25b6  "; font-size: 10px; color: #555; }
+  .doc-content details[open] > summary::before { content: "\\25bc  "; }
+  .doc-content summary:hover { color: #ddd; background: #141414; border-radius: 4px 4px 0 0; }
+  .doc-content details > :not(summary) { margin-left: 12px; margin-right: 12px; }
+`;
+
+function Node({ item, depth = 0, onReadFile, activeDoc }) {
+  const [open, setOpen] = useState(false);
+  const isDir = item.d;
+  const kids = item.ch || [];
+  const hasKids = kids.length > 0;
+  const isReadable = !!item.r;
+  const isActive = isReadable && item.r === activeDoc;
+
+  return (
+    <>
+      <div
+        onClick={isDir ? () => setOpen(!open) : (isReadable ? () => onReadFile(item.r, item.n) : undefined)}
+        style={{
+          display: "flex", alignItems: "center", gap: 6,
+          paddingLeft: 10 + depth * 16, paddingRight: 10,
+          height: 26, cursor: isDir || isReadable ? "pointer" : "default",
+          fontSize: 12.5,
+          fontFamily: "'SF Mono', 'Cascadia Code', 'Fira Code', Consolas, monospace",
+          backgroundColor: isActive ? "#6b9bd218" : "transparent",
+          borderRight: isActive ? "2px solid #6b9bd2" : "2px solid transparent",
+        }}
+        onMouseEnter={e => { if (!isActive) e.currentTarget.style.backgroundColor = isReadable ? "#6b9bd210" : "#ffffff06"; }}
+        onMouseLeave={e => { if (!isActive) e.currentTarget.style.backgroundColor = isActive ? "#6b9bd218" : "transparent"; }}
+      >
+        {isDir ? (
+          <>
+            <span style={{ width: 10, fontSize: 8, color: "#555", textAlign: "center" }}>
+              {hasKids ? (open ? "\u25bc" : "\u25b6") : "\u00b7"}
+            </span>
+            <span style={{ fontSize: 13 }}>{open ? "\ud83d\udcc2" : "\ud83d\udcc1"}</span>
+            <span style={{ color: "#bbb" }}>{item.n}</span>
+            <span style={{ marginLeft: "auto", fontSize: 10.5, color: "#777" }}>
+              {item.c} file{item.c !== 1 ? "s" : ""}
+            </span>
+          </>
+        ) : (
+          <>
+            <span style={{ width: 10 }} />
+            <Badge name={item.n} />
+            <span style={{
+              color: isReadable ? "#6b9bd2" : "#999",
+              overflow: "hidden",
+              textOverflow: "ellipsis", whiteSpace: "nowrap",
+              fontWeight: isReadable ? 500 : 400,
+            }}>{item.n}</span>
+            {isReadable && (
+              <span style={{ fontSize: 9, color: "#6b9bd280", marginLeft: 4, flexShrink: 0 }}>
+                ▸ read
+              </span>
+            )}
+            {item.s > 0 && (
+              <span style={{ marginLeft: "auto", fontSize: 10.5, color: "#777", flexShrink: 0 }}>
+                {fmtSize(item.s)}
+              </span>
+            )}
+          </>
+        )}
+      </div>
+      {isDir && open && kids.map((ch, i) => (
+        <Node key={ch.n + i} item={ch} depth={depth + 1} onReadFile={onReadFile} activeDoc={activeDoc} />
+      ))}
+    </>
+  );
+}
+
+function Section({ area, onReadFile, activeDoc }) {
+  const [open, setOpen] = useState(area.open);
+
+  return (
+    <div style={{ borderBottom: "1px solid #191919" }}>
+      <div
+        onClick={() => setOpen(!open)}
+        style={{
+          display: "flex", alignItems: "center", gap: 8,
+          padding: "7px 10px", cursor: "pointer", userSelect: "none",
+        }}
+        onMouseEnter={e => { e.currentTarget.style.backgroundColor = "#151515"; }}
+        onMouseLeave={e => { e.currentTarget.style.backgroundColor = "transparent"; }}
+      >
+        <span style={{ fontSize: 8, color: "#555", width: 10, textAlign: "center" }}>
+          {open ? "\u25bc" : "\u25b6"}
+        </span>
+        <span style={{ fontSize: 13 }}>{ICONS[area.icon] || "\ud83d\udcc1"}</span>
+        <span style={{ fontWeight: 600, fontSize: 12.5, color: "#bbb", letterSpacing: 0.2 }}>
+          {area.label}
+        </span>
+        <span style={{
+          marginLeft: "auto", fontSize: 10.5,
+          color: "#666", fontFamily: "monospace",
+        }}>
+          {area.total} file{area.total !== 1 ? "s" : ""}
+        </span>
+      </div>
+      {open && (
+        <div style={{ paddingBottom: 4 }}>
+          {area.children.length === 0 ? (
+            <div style={{
+              padding: "4px 10px 4px 38px", fontSize: 11.5,
+              color: "#383838", fontStyle: "italic",
+            }}>
+              (empty)
+            </div>
+          ) : (
+            area.children.map((ch, i) => (
+              <Node key={ch.n + i} item={ch} depth={0} onReadFile={onReadFile} activeDoc={activeDoc} />
+            ))
+          )}
+        </div>
+      )}
+    </div>
+  );
+}
+
+function ReadingPane({ docKey, onClose }) {
+  const html = READABLE_CONTENT[docKey] || "<p>Content not available.</p>";
+  const contentRef = useRef(null);
+
+  // Intercept ALL link clicks — scroll for #anchors, block everything else
+  const handleContentClick = useCallback((e) => {
+    const a = e.target.closest("a");
+    if (!a) return;
+    e.preventDefault(); // Block ALL link navigation
+    e.stopPropagation();
+    const href = a.getAttribute("href");
+    if (href && href.startsWith("#")) {
+      const id = href.slice(1);
+      const target = contentRef.current && contentRef.current.querySelector("#" + CSS.escape(id));
+      if (target) {
+        target.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    }
+    // Non-anchor links (external URLs, relative paths) are silently blocked
+  }, []);
+
+  return (
+    <div style={{ display: "flex", flexDirection: "column", height: "100%" }}>
+      <div style={{
+        padding: "10px 14px",
+        borderBottom: "1px solid #333",
+        display: "flex", alignItems: "center", gap: 10,
+        backgroundColor: "#0a0a0a",
+        flexShrink: 0,
+      }}>
+        <span style={{
+          fontSize: 12, color: "#999",
+          fontFamily: "'SF Mono', Consolas, monospace",
+          overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap",
+          flex: 1,
+        }}>
+          {docKey}
+        </span>
+        <span style={{ fontSize: 10, color: "#666" }}>
+          {fmtTime(WORKSPACE_DATA.scanned_at)}
+        </span>
+        <button
+          onClick={onClose}
+          title="Close document"
+          style={{
+            background: "#1a1a1a", border: "1px solid #444", borderRadius: 4,
+            color: "#aaa", fontSize: 16, cursor: "pointer",
+            width: 30, height: 30, display: "flex", alignItems: "center",
+            justifyContent: "center", flexShrink: 0, lineHeight: 1,
+          }}
+          onMouseEnter={e => { e.currentTarget.style.color = "#fff"; e.currentTarget.style.backgroundColor = "#333"; }}
+          onMouseLeave={e => { e.currentTarget.style.color = "#aaa"; e.currentTarget.style.backgroundColor = "#1a1a1a"; }}
+        >{"\u2715"}</button>
+      </div>
+      <div
+        ref={contentRef}
+        onClick={handleContentClick}
+        style={{ padding: "20px 24px 40px 24px", flex: 1, overflowY: "auto" }}
+      >
+        <style>{DOC_STYLES}</style>
+        <div
+          className="doc-content"
+          dangerouslySetInnerHTML={{ __html: html }}
+        />
+      </div>
+    </div>
+  );
+}
+
+// Toggle switch component
+function Toggle({ on, onToggle }) {
+  return (
+    <div
+      onClick={onToggle}
+      style={{
+        width: 36, height: 20, borderRadius: 10, cursor: "pointer",
+        backgroundColor: on ? "#2563eb" : "#333",
+        transition: "background-color 0.2s",
+        position: "relative", flexShrink: 0,
+      }}
+    >
+      <div style={{
+        width: 16, height: 16, borderRadius: 8,
+        backgroundColor: on ? "#fff" : "#666",
+        position: "absolute", top: 2,
+        left: on ? 18 : 2,
+        transition: "left 0.2s, background-color 0.2s",
+      }} />
+    </div>
+  );
+}
+
+// Session toolbar data
+const INITIAL_MCPS = [
+  { id: "old-bailey-mcp", name: "Old Bailey MCP", desc: "Search ~197,745 trial records, London 1674\u20131913", on: true },
+  { id: "vrti-alpha", name: "VRTI Alpha", desc: "Gender by century \u2013 aggregation across the knowledge graph", on: true },
+  { id: "vrti-beta", name: "VRTI Beta", desc: "Person lookup by name \u2013 CIDOC-CRM appellation search", on: true },
+  { id: "vrti-gamma", name: "VRTI Gamma", desc: "Entity inspector \u2013 full property retrieval by URI", on: true },
+  { id: "ra-mcp", name: "ra-mcp", desc: "Search AI-transcribed Swedish National Archives holdings", on: false },
+  { id: "rss-reader", name: "RSS Reader", desc: "Search newsletter and blog feeds", on: false },
+];
+
+const INITIAL_SKILLS = [
+  { id: "old-bailey-research", name: "Old Bailey Collaborative Research", desc: "Interview protocol, five-phase workflow, source criticism", on: true },
+  { id: "vrti-research", name: "VRTI Collaborative Research", desc: "Interview protocol, SPARQL-mediated research, entity exploration", on: true },
+];
+
+function SessionToolbar({ expanded, onToggleExpand, toolbarHeight, onResizeStart }) {
+  const [mcps, setMcps] = useState(INITIAL_MCPS);
+  const [skills, setSkills] = useState(INITIAL_SKILLS);
+
+  const toggleMcp = (id) => {
+    setMcps(prev => prev.map(m => m.id === id ? { ...m, on: !m.on } : m));
+  };
+  const toggleSkill = (id) => {
+    setSkills(prev => prev.map(s => s.id === id ? { ...s, on: !s.on } : s));
+  };
+
+  const activeCount = mcps.filter(m => m.on).length + skills.filter(s => s.on).length;
+
+  return (
+    <div style={{
+      backgroundColor: "#0a0a0a",
+      flexShrink: 0,
+      display: "flex", flexDirection: "column",
+      overflow: "hidden",
+      height: expanded ? toolbarHeight : "auto",
+    }}>
+      {/* Draggable resize handle (only when expanded) */}
+      {expanded && (
+        <div
+          onMouseDown={onResizeStart}
+          style={{
+            height: 5,
+            cursor: "row-resize",
+            backgroundColor: "#1a1a1a",
+            display: "flex", alignItems: "center", justifyContent: "center",
+            flexShrink: 0,
+          }}
+          onMouseEnter={e => { e.currentTarget.style.backgroundColor = "#2a2a2a"; }}
+          onMouseLeave={e => { e.currentTarget.style.backgroundColor = "#1a1a1a"; }}
+        >
+          <div style={{ width: 30, height: 2, backgroundColor: "#333", borderRadius: 1 }} />
+        </div>
+      )}
+
+      {/* Clickable header bar */}
+      <div
+        onClick={onToggleExpand}
+        style={{
+          padding: "8px 14px",
+          borderTop: "1px solid #2a2a2a",
+          display: "flex", alignItems: "center", gap: 10,
+          cursor: "pointer", userSelect: "none",
+          flexShrink: 0,
+        }}
+        onMouseEnter={e => { e.currentTarget.style.backgroundColor = "#111"; }}
+        onMouseLeave={e => { e.currentTarget.style.backgroundColor = "transparent"; }}
+      >
+        <span style={{ fontSize: 9, color: "#666" }}>{expanded ? "\u25bc" : "\u25b6"}</span>
+        <span style={{ fontSize: 12, fontWeight: 600, color: "#999" }}>
+          Session Configuration
+        </span>
+        <span style={{
+          fontSize: 10, color: "#6b9bd2", backgroundColor: "#6b9bd210",
+          padding: "2px 7px", borderRadius: 3, border: "1px solid #6b9bd225",
+        }}>
+          {activeCount} active
+        </span>
+        <span style={{ marginLeft: "auto", fontSize: 10, color: "#555" }}>
+          {mcps.filter(m => m.on).length} servers {"\u00b7"} {skills.filter(s => s.on).length} skills
+        </span>
+      </div>
+
+      {/* Expanded content — three-column layout */}
+      {expanded && (
+        <div style={{ display: "flex", flex: 1, overflow: "hidden", gap: 0 }}>
+
+          {/* COLUMN 1: MCP Servers */}
+          <div style={{
+            flex: 1, minWidth: 0, overflowY: "auto",
+            padding: "0 14px 12px",
+            borderRight: "1px solid #1a1a1a",
+          }}>
+            <div style={{
+              fontSize: 10, fontWeight: 700, color: "#666", letterSpacing: 0.5,
+              textTransform: "uppercase", padding: "8px 0 6px", borderBottom: "1px solid #1a1a1a",
+              position: "sticky", top: 0, backgroundColor: "#0a0a0a", zIndex: 1,
+            }}>
+              MCP Servers
+              <span style={{ float: "right", fontWeight: 400, textTransform: "none", letterSpacing: 0, color: "#555" }}>
+                {mcps.filter(m => m.on).length}/{mcps.length}
+              </span>
+            </div>
+            {mcps.map(m => (
+              <div key={m.id} style={{
+                display: "flex", alignItems: "center", gap: 8,
+                padding: "6px 0", borderBottom: "1px solid #111",
+                opacity: m.on ? 1 : 0.5,
+              }}>
+                <Toggle on={m.on} onToggle={() => toggleMcp(m.id)} />
+                <div style={{ flex: 1, minWidth: 0 }}>
+                  <div style={{
+                    fontSize: 11.5, fontWeight: 600, color: m.on ? "#ccc" : "#777",
+                    fontFamily: "'SF Mono', Consolas, monospace",
+                    whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis",
+                  }}>{m.name}</div>
+                  <div style={{ fontSize: 10, color: m.on ? "#888" : "#555", marginTop: 1 }}>
+                    {m.desc}
+                  </div>
+                </div>
+                <span style={{
+                  fontSize: 8, padding: "2px 5px", borderRadius: 3, flexShrink: 0,
+                  backgroundColor: m.on ? "#16a34a18" : "#1a1a1a",
+                  color: m.on ? "#4ade80" : "#444",
+                  border: m.on ? "1px solid #16a34a30" : "1px solid #222",
+                }}>
+                  {m.on ? "connected" : "available"}
+                </span>
+              </div>
+            ))}
+          </div>
+
+          {/* COLUMN 2: Research Skills */}
+          <div style={{
+            flex: 1, minWidth: 0, overflowY: "auto",
+            padding: "0 14px 12px",
+            borderRight: "1px solid #1a1a1a",
+          }}>
+            <div style={{
+              fontSize: 10, fontWeight: 700, color: "#666", letterSpacing: 0.5,
+              textTransform: "uppercase", padding: "8px 0 6px", borderBottom: "1px solid #1a1a1a",
+              position: "sticky", top: 0, backgroundColor: "#0a0a0a", zIndex: 1,
+            }}>
+              Research Skills
+              <span style={{ float: "right", fontWeight: 400, textTransform: "none", letterSpacing: 0, color: "#555" }}>
+                {skills.filter(s => s.on).length}/{skills.length}
+              </span>
+            </div>
+            {skills.map(s => (
+              <div key={s.id} style={{
+                display: "flex", alignItems: "center", gap: 8,
+                padding: "6px 0", borderBottom: "1px solid #111",
+                opacity: s.on ? 1 : 0.5,
+              }}>
+                <Toggle on={s.on} onToggle={() => toggleSkill(s.id)} />
+                <div style={{ flex: 1, minWidth: 0 }}>
+                  <div style={{
+                    fontSize: 11.5, fontWeight: 600, color: s.on ? "#ccc" : "#777",
+                    whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis",
+                  }}>{s.name}</div>
+                  <div style={{ fontSize: 10, color: s.on ? "#888" : "#555", marginTop: 1 }}>
+                    {s.desc}
+                  </div>
+                </div>
+                <span style={{
+                  fontSize: 8, padding: "2px 5px", borderRadius: 3, flexShrink: 0,
+                  backgroundColor: s.on ? "#6b9bd218" : "#1a1a1a",
+                  color: s.on ? "#6b9bd2" : "#444",
+                  border: s.on ? "1px solid #6b9bd230" : "1px solid #222",
+                }}>
+                  {s.on ? "active" : "installed"}
+                </span>
+              </div>
+            ))}
+          </div>
+
+          {/* COLUMN 3: Session Info (customisable placeholder) */}
+          <div style={{
+            flex: 1, minWidth: 0, overflowY: "auto",
+            padding: "0 14px 12px",
+          }}>
+            <div style={{
+              fontSize: 10, fontWeight: 700, color: "#666", letterSpacing: 0.5,
+              textTransform: "uppercase", padding: "8px 0 6px", borderBottom: "1px solid #1a1a1a",
+              position: "sticky", top: 0, backgroundColor: "#0a0a0a", zIndex: 1,
+            }}>
+              Session Notes
+            </div>
+            <div style={{ padding: "10px 0", fontSize: 11.5, color: "#888", lineHeight: 1.5 }}>
+              <div style={{
+                padding: "8px 10px", backgroundColor: "#0e0e0e", border: "1px solid #1a1a1a",
+                borderRadius: 4, marginBottom: 8,
+              }}>
+                <div style={{ fontSize: 10, color: "#666", marginBottom: 4 }}>Research focus</div>
+                <div style={{ color: "#bbb", fontSize: 12 }}>Old Bailey + VRTI {"\u2014"} cross-referencing Irish persons in London criminal records</div>
+              </div>
+              <div style={{
+                padding: "8px 10px", backgroundColor: "#0e0e0e", border: "1px solid #1a1a1a",
+                borderRadius: 4, marginBottom: 8,
+              }}>
+                <div style={{ fontSize: 10, color: "#666", marginBottom: 4 }}>Session started</div>
+                <div style={{ color: "#999", fontSize: 11, fontFamily: "'SF Mono', Consolas, monospace" }}>
+                  {new Date().toLocaleDateString([], { weekday: "long", day: "numeric", month: "long", year: "numeric" })}
+                </div>
+              </div>
+              <div style={{
+                padding: "8px 10px", backgroundColor: "#0e0e0e", border: "1px solid #1a1a1a",
+                borderRadius: 4, marginBottom: 8,
+              }}>
+                <div style={{ fontSize: 10, color: "#666", marginBottom: 4 }}>Queries run</div>
+                <div style={{ color: "#999", fontSize: 11 }}>0 searches {"\u00b7"} 0 records retrieved</div>
+              </div>
+              <div style={{
+                padding: "10px 0", fontSize: 10, color: "#444", fontStyle: "italic", textAlign: "center",
+              }}>
+                This panel is customisable per session
+              </div>
+            </div>
+          </div>
+
+        </div>
+      )}
+    </div>
+  );
+}
+
+function WorkspaceNavigator() {
+  const [activeDoc, setActiveDoc] = useState(null);
+  const [activeFileName, setActiveFileName] = useState("");
+  const [dividerPos, setDividerPos] = useState(380);
+  const [toolbarExpanded, setToolbarExpanded] = useState(false);
+  const [toolbarHeight, setToolbarHeight] = useState(280);
+  const isDragging = useRef(false);
+  const isToolbarDragging = useRef(false);
+  const containerRef = useRef(null);
+
+  const handleReadFile = (docKey, fileName) => {
+    setActiveDoc(docKey);
+    setActiveFileName(fileName);
+  };
+
+  // Vertical divider drag (tree/reading split)
+  const handleMouseDown = useCallback((e) => {
+    isDragging.current = true;
+    e.preventDefault();
+    document.body.style.cursor = "col-resize";
+    document.body.style.userSelect = "none";
+  }, []);
+
+  // Horizontal toolbar resize drag
+  const handleToolbarResizeStart = useCallback((e) => {
+    isToolbarDragging.current = true;
+    e.preventDefault();
+    document.body.style.cursor = "row-resize";
+    document.body.style.userSelect = "none";
+  }, []);
+
+  useEffect(() => {
+    const handleMouseMove = (e) => {
+      // Vertical divider drag
+      if (isDragging.current && containerRef.current) {
+        const rect = containerRef.current.getBoundingClientRect();
+        const newPos = Math.max(250, Math.min(e.clientX - rect.left, rect.width - 300));
+        setDividerPos(newPos);
+      }
+      // Horizontal toolbar drag
+      if (isToolbarDragging.current) {
+        const viewportHeight = window.innerHeight;
+        const newHeight = Math.max(120, Math.min(viewportHeight - e.clientY, viewportHeight * 0.7));
+        setToolbarHeight(newHeight);
+      }
+    };
+    const handleMouseUp = () => {
+      isDragging.current = false;
+      isToolbarDragging.current = false;
+      document.body.style.cursor = "";
+      document.body.style.userSelect = "";
+    };
+    document.addEventListener("mousemove", handleMouseMove);
+    document.addEventListener("mouseup", handleMouseUp);
+    return () => {
+      document.removeEventListener("mousemove", handleMouseMove);
+      document.removeEventListener("mouseup", handleMouseUp);
+    };
+  }, []);
+
+  return (
+    <div style={{
+      backgroundColor: "#0e0e0e", color: "#ccc",
+      fontFamily: "-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+      height: "100vh",
+      display: "flex", flexDirection: "column",
+    }}>
+      {/* MAIN CONTENT AREA */}
+      <div
+        ref={containerRef}
+        style={{ flex: 1, display: "flex", overflow: "hidden" }}
+      >
+        {/* LEFT PANEL: Tree */}
+        <div style={{
+          width: activeDoc ? dividerPos : "100%",
+          maxWidth: activeDoc ? undefined : 700,
+          margin: activeDoc ? undefined : "0 auto",
+          minWidth: 250,
+          display: "flex", flexDirection: "column",
+          flexShrink: 0,
+          overflow: "hidden",
+        }}>
+          {/* Header */}
+          <div style={{
+            padding: "14px 14px 10px", borderBottom: "1px solid #191919",
+            display: "flex", alignItems: "baseline", justifyContent: "space-between",
+            flexShrink: 0,
+          }}>
+            <div>
+              <div style={{ fontSize: 14, fontWeight: 700, color: "#ddd", letterSpacing: 0.3 }}>
+                Historian{"\u2019"}s Desktop {"\u2013"} Workspace Workbench
+              </div>
+              <div style={{ fontSize: 10.5, color: "#777", marginTop: 2 }}>
+                {fmtTime(WORKSPACE_DATA.scanned_at)}
+              </div>
+            </div>
+            <div style={{
+              fontSize: 10, color: "#6b9bd2", backgroundColor: "#6b9bd210",
+              padding: "3px 8px", borderRadius: 3, border: "1px solid #6b9bd225",
+              flexShrink: 0,
+            }}>
+              Mode 2 {"\u00b7"} click highlighted files to read
+            </div>
+          </div>
+
+          {/* Tree content */}
+          <div style={{ flex: 1, overflowY: "auto" }}>
+            {WORKSPACE_DATA.areas.map((a) => (
+              <Section key={a.label} area={a} onReadFile={handleReadFile} activeDoc={activeDoc} />
+            ))}
+          </div>
+
+          {/* Footer */}
+          <div style={{
+            padding: "10px 14px", fontSize: 10.5, color: "#555", textAlign: "center",
+            borderTop: "1px solid #141414", flexShrink: 0,
+          }}>
+            Snapshot from the Historian{"\u2019"}s Desktop repository {"\u00b7"} AI + History Collaboratory
+          </div>
+        </div>
+
+        {/* DIVIDER (only when reading pane is open) */}
+        {activeDoc && (
+          <div
+            onMouseDown={handleMouseDown}
+            style={{
+              width: 6,
+              cursor: "col-resize",
+              backgroundColor: "#191919",
+              display: "flex", alignItems: "center", justifyContent: "center",
+              flexShrink: 0,
+            }}
+            onMouseEnter={e => { e.currentTarget.style.backgroundColor = "#2a2a2a"; }}
+            onMouseLeave={e => { if (!isDragging.current) e.currentTarget.style.backgroundColor = "#191919"; }}
+          >
+            <div style={{ width: 2, height: 30, backgroundColor: "#333", borderRadius: 1 }} />
+          </div>
+        )}
+
+        {/* RIGHT PANEL: Reading pane */}
+        {activeDoc && (
+          <div style={{ flex: 1, minWidth: 300, display: "flex", flexDirection: "column" }}>
+            <ReadingPane docKey={activeDoc} onClose={() => { setActiveDoc(null); setActiveFileName(""); }} />
+          </div>
+        )}
+      </div>
+
+      {/* BOTTOM PANEL: Session toolbar */}
+      <SessionToolbar
+        expanded={toolbarExpanded}
+        onToggleExpand={() => setToolbarExpanded(!toolbarExpanded)}
+        toolbarHeight={toolbarHeight}
+        onResizeStart={handleToolbarResizeStart}
+      />
+    </div>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById("root")).render(<WorkspaceNavigator />);
+  </script>
+</body>
+</html>
