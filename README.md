@@ -134,7 +134,7 @@ Session materials: [Session plan (PDF)](https://github.com/ai-and-history-collab
 
 ---
 
-### Session 4 — Cowork for Historians: Skills and Workflows [UPCOMING EVENT]
+### Session 4 — Cowork for Historians: Skills and Workflows [PAST EVENT]
 
 **Tuesday 31 March 2026** · 4 pm UK · 5 pm CET · 11 am EST · 9 am MT · 8 am PT · Zoom · *1 hour*
 
