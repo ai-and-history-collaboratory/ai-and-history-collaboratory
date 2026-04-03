@@ -243,7 +243,7 @@ Members of the collaboratory to suggest ideas for simulations which are bite siz
 
 ### History Hackathon [FUTURE EVENT]
 
-**June 2026** · Format TBC
+**September 2026** · Format TBC
 
 Possible face-to-face or online history tech hackathon for PhD and postdoc historians and computer scientists.
 
