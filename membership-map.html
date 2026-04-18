@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI + History Collaboratory — Global Membership</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: Georgia, 'Times New Roman', serif; background: #f5f5f5; }
+  .header {
+    text-align: center; padding: 20px 10px 10px;
+    color: #1a3a5c;
+  }
+  .header h1 { font-size: 22px; margin-bottom: 4px; }
+  .header h2 { font-size: 16px; font-weight: normal; margin-bottom: 4px; }
+  .header h3 { font-size: 16px; margin-bottom: 0; }
+  #map {
+    width: 95%; max-width: 1200px; height: 550px;
+    margin: 10px auto 15px; border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  .legend {
+    background: white; padding: 14px 18px 10px; border-radius: 6px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    font-family: Calibri, Arial, sans-serif; font-size: 14px;
+    line-height: 1.9;
+    max-width: 380px;
+  }
+  .legend-item {
+    display: flex; align-items: center; gap: 10px;
+    cursor: pointer; user-select: none;
+    padding: 2px 0;
+    transition: opacity 0.2s;
+  }
+  .legend-item:hover { opacity: 0.7; }
+  .legend-item.disabled { opacity: 0.35; }
+  .legend-item.disabled .legend-label { text-decoration: line-through; }
+  .legend-checkbox {
+    width: 16px; height: 16px; flex-shrink: 0;
+    border: 2px solid #888; border-radius: 3px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: bold; color: white;
+    transition: all 0.15s;
+  }
+  .legend-checkbox.checked { background: #1a3a5c; border-color: #1a3a5c; }
+  .legend-checkbox.checked-outstanding { background: #a07820; border-color: #a07820; }
+  .legend-checkbox.checked-planned { background: #2a8a80; border-color: #2a8a80; }
+  .legend-marker {
+    width: 14px; height: 14px; display: inline-block; flex-shrink: 0;
+  }
+  .marker-member {
+    background: #1a3a5c; border-radius: 50%;
+    border: 2px solid white; box-shadow: 0 0 0 1px #1a3a5c;
+  }
+  .marker-outstanding {
+    background: #d4a843; transform: rotate(45deg);
+    border: 1px solid #a07820;
+    width: 12px; height: 12px; margin: 1px;
+  }
+  .marker-planned {
+    background: #5ab4ac; border: 1px solid #2a8a80;
+  }
+  .legend-hint {
+    font-size: 11px; color: #888; font-style: italic;
+    margin-top: 6px; padding-top: 6px;
+    border-top: 1px solid #e0e0e0;
+  }
+  .footer {
+    text-align: center; padding: 10px;
+    font-family: Calibri, Arial, sans-serif;
+    font-size: 12px; color: #888;
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>AI + History Collaboratory — Global Membership</h1>
+  <h2>GitHub Organisation Members, Outstanding and Planned Invitations — 18 April 2026</h2>
+  <h3><strong><em>n</em> = 52</strong></h3>
+</div>
+
+<div id="map"></div>
+
+<div class="footer">
+  AI + History Collaboratory · <a href="https://github.com/ai-and-history-collaboratory" style="color:#1a3a5c;">github.com/ai-and-history-collaboratory</a>
+</div>
+
+<script>
+const map = L.map('map', {
+  center: [30, 0],
+  zoom: 2,
+  minZoom: 2,
+  maxZoom: 8,
+  zoomControl: true
+});
+
+L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+  attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/">CARTO</a>',
+  subdomains: 'abcd',
+  maxZoom: 19
+}).addTo(map);
+
+// Marker data: [lat, lon, location]
+// No personal identifiers — coordinates and city/country only
+const membersData = [
+  [39.74, -104.99, "Denver, USA"],
+  [52.63, 1.30, "Norfolk, UK"],
+  [53.34, -6.27, "Dublin, Ireland"],
+  [52.13, -106.67, "Saskatchewan, Canada"],
+  [52.37, 4.90, "Amsterdam, Netherlands"],
+  [-27.47, 153.03, "Brisbane, Australia"],
+  [52.21, 0.12, "Cambridge, UK"],
+  [40.77, -73.97, "New York, USA"],
+  [51.51, -0.13, "London, UK"],
+  [51.75, -1.26, "Oxford, UK"],
+  [49.89, 10.89, "Bavaria, Germany"],
+  [33.79, -84.39, "Atlanta, USA"],
+  [53.54, 8.58, "Lower Saxony, Germany"],
+  [38.89, -77.02, "Washington DC, USA"],
+  [55.68, 12.57, "Copenhagen, Denmark"],
+  [58.97, 5.73, "Stavanger, Norway"],
+  [51.76, -1.26, "Oxford, UK"],
+  [42.35, -83.05, "Detroit, USA"],
+  [49.95, 11.58, "Bavaria, Germany"],
+  [24.45, 54.65, "Abu Dhabi, UAE"],
+  [40.77, -74.00, "New York, USA"],
+  [43.47, -80.52, "Ontario, Canada"],
+  [45.42, -75.70, "Ottawa, Canada"],
+  [41.71, -72.23, "Connecticut, USA"],
+  [37.27, -76.71, "Virginia, USA"],
+  [41.05, -73.54, "Connecticut, USA"],
+  [51.51, -0.10, "London, UK"],
+  [48.21, 16.37, "Vienna, Austria"],
+  [53.22, 6.57, "Groningen, Netherlands"],
+  [40.69, 30.40, "Sakarya, Turkey"],
+  [52.37, 4.91, "Amsterdam, Netherlands"],
+  [-12.97, -38.51, "Salvador, Brazil"],
+  [51.52, -0.08, "London, UK"],
+  [44.98, -93.27, "Minneapolis, USA"],
+];
+
+const outstandingData = [
+  [40.78, -73.96, "New York, USA"],
+  [38.90, -77.03, "Washington DC, USA"],
+  [51.51, -0.12, "London, UK"],
+  [59.33, 18.07, "Stockholm, Sweden"],
+  [51.52, -0.14, "London, UK"],
+  [49.90, 10.90, "Bavaria, Germany"],
+];
+
+const plannedData = [
+  [51.51, -0.09, "London, UK"],
+  [53.96, -1.08, "York, UK"],
+  [36.99, -86.44, "Kentucky, USA"],
+  [52.52, 13.40, "Berlin, Germany"],
+  [39.33, -76.62, "Baltimore, USA"],
+  [56.16, 10.20, "Aarhus, Denmark"],
+  [39.98, -75.16, "Philadelphia, USA"],
+  [51.75, -1.25, "Oxford, UK"],
+  [9.06, 7.49, "Abuja, Nigeria"],
+  [41.31, -72.92, "Connecticut, USA"],
+  [41.71, -72.24, "Connecticut, USA"],
+  [51.76, -1.27, "Oxford, UK"],
+];
+
+// Custom marker icons — visible marker inside a larger transparent click target
+function createIcon(color, borderColor, shape) {
+  const visSize = shape === 'circle' ? 14 : 12;
+  const hitSize = 24; // larger click target
+  const offset = (hitSize - visSize) / 2;
+  const border = shape === 'circle' ? `2px solid white; box-shadow: 0 0 0 1px ${color}` : `1.5px solid ${borderColor}`;
+  const radius = shape === 'circle' ? '50%' : (shape === 'diamond' ? '2px' : '1px');
+  const transform = shape === 'diamond' ? 'rotate(45deg)' : '';
+
+  return L.divIcon({
+    className: '',
+    html: `<div style="width:${hitSize}px;height:${hitSize}px;display:flex;align-items:center;justify-content:center;cursor:pointer;">
+             <div style="width:${visSize}px;height:${visSize}px;background:${color};border:${border};border-radius:${radius};transform:${transform};"></div>
+           </div>`,
+    iconSize: [hitSize, hitSize],
+    iconAnchor: [hitSize/2, hitSize/2],
+    popupAnchor: [0, -hitSize/2]
+  });
+}
+
+const memberIcon = createIcon('#1a3a5c', 'white', 'circle');
+const outstandingIcon = createIcon('#d4a843', '#a07820', 'diamond');
+const plannedIcon = createIcon('#5ab4ac', '#2a8a80', 'square');
+
+// Create layer groups
+const membersLayer = L.layerGroup();
+const outstandingLayer = L.layerGroup();
+const plannedLayer = L.layerGroup();
+
+// z-order: members behind (100), outstanding middle (200), planned on top (300)
+// — smaller layers on top so their popups are reachable
+membersData.forEach(([lat, lon, location]) => {
+  L.marker([lat, lon], {icon: memberIcon, zIndexOffset: 100})
+    .bindPopup(`<strong>${location}</strong><br><em>GitHub Organisation Member</em>`)
+    .addTo(membersLayer);
+});
+
+outstandingData.forEach(([lat, lon, location]) => {
+  L.marker([lat, lon], {icon: outstandingIcon, zIndexOffset: 200})
+    .bindPopup(`<strong>${location}</strong><br><em>Outstanding Invitation</em>`)
+    .addTo(outstandingLayer);
+});
+
+plannedData.forEach(([lat, lon, location]) => {
+  L.marker([lat, lon], {icon: plannedIcon, zIndexOffset: 300})
+    .bindPopup(`<strong>${location}</strong><br><em>Planned Invitation</em>`)
+    .addTo(plannedLayer);
+});
+
+// Add all layers to map initially
+membersLayer.addTo(map);
+outstandingLayer.addTo(map);
+plannedLayer.addTo(map);
+
+// Track layer visibility
+const layerState = {
+  members: true,
+  outstanding: true,
+  planned: true
+};
+
+function toggleLayer(key) {
+  const layers = { members: membersLayer, outstanding: outstandingLayer, planned: plannedLayer };
+  const layer = layers[key];
+  const item = document.getElementById('legend-' + key);
+  const checkbox = item.querySelector('.legend-checkbox');
+
+  if (layerState[key]) {
+    map.removeLayer(layer);
+    layerState[key] = false;
+    item.classList.add('disabled');
+    checkbox.innerHTML = '';
+    checkbox.className = 'legend-checkbox';
+  } else {
+    map.addLayer(layer);
+    layerState[key] = true;
+    item.classList.remove('disabled');
+    checkbox.innerHTML = '&#10003;';
+    const checkClass = key === 'members' ? 'checked' :
+                       key === 'outstanding' ? 'checked-outstanding' : 'checked-planned';
+    checkbox.className = 'legend-checkbox ' + checkClass;
+  }
+}
+
+// Interactive legend control
+const legend = L.control({position: 'bottomleft'});
+legend.onAdd = function() {
+  const div = L.DomUtil.create('div', 'legend');
+
+  // Prevent map interactions when clicking legend
+  L.DomEvent.disableClickPropagation(div);
+  L.DomEvent.disableScrollPropagation(div);
+
+  div.innerHTML = `
+    <div class="legend-item" id="legend-members" onclick="toggleLayer('members')">
+      <span class="legend-checkbox checked">&#10003;</span>
+      <span class="legend-marker marker-member"></span>
+      <span class="legend-label">GitHub Organisation Members (34)</span>
+    </div>
+    <div class="legend-item" id="legend-outstanding" onclick="toggleLayer('outstanding')">
+      <span class="legend-checkbox checked-outstanding">&#10003;</span>
+      <span class="legend-marker marker-outstanding"></span>
+      <span class="legend-label">Outstanding Invitations — awaiting acceptance (6)</span>
+    </div>
+    <div class="legend-item" id="legend-planned" onclick="toggleLayer('planned')">
+      <span class="legend-checkbox checked-planned">&#10003;</span>
+      <span class="legend-marker marker-planned"></span>
+      <span class="legend-label">Planned Invitations — awaiting GitHub ID (12)</span>
+    </div>
+    <div class="legend-hint">Click any layer to toggle visibility · Zoom with +/− or scroll</div>
+  `;
+  return div;
+};
+legend.addTo(map);
+</script>
+</body>
+</html>
