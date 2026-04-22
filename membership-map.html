@@ -78,8 +78,8 @@
 
 <div class="header">
   <h1>AI + History Collaboratory — Global Membership</h1>
-  <h2>GitHub Organisation Members, Outstanding and Planned Invitations — 21 April 2026</h2>
-  <h3><strong><em>n</em> = 54</strong></h3>
+  <h2>GitHub Organisation Members, Outstanding and Planned Invitations — 22 April 2026</h2>
+  <h3><strong><em>n</em> = 57</strong></h3>
 </div>
 
 <div id="map"></div>
@@ -147,7 +147,9 @@ const membersData = [
 ];
 
 const outstandingData = [
+  [38.30, -77.46, "Fredericksburg, USA"],
   [40.78, -73.96, "New York, USA"],
+  [40.70, 30.41, "Sakarya, Turkey"],
   [51.51, -0.12, "London, UK"],
   [59.33, 18.07, "Stockholm, Sweden"],
   [51.52, -0.14, "London, UK"],
@@ -161,6 +163,7 @@ const plannedData = [
   [39.33, -76.62, "Baltimore, USA"],
   [56.18, 10.14, "Aarhus, Denmark"],
   [39.98, -75.16, "Philadelphia, USA"],
+  [51.53, -0.13, "London, UK"],
   [51.75, -1.25, "Oxford, UK"],
   [9.06, 7.49, "Abuja, Nigeria"],
   [41.31, -72.92, "Connecticut, USA"],
@@ -270,12 +273,12 @@ legend.onAdd = function() {
     <div class="legend-item" id="legend-outstanding" onclick="toggleLayer('outstanding')">
       <span class="legend-checkbox checked-outstanding">&#10003;</span>
       <span class="legend-marker marker-outstanding"></span>
-      <span class="legend-label">Outstanding Invitations — awaiting acceptance (5)</span>
+      <span class="legend-label">Outstanding Invitations — awaiting acceptance (7)</span>
     </div>
     <div class="legend-item" id="legend-planned" onclick="toggleLayer('planned')">
       <span class="legend-checkbox checked-planned">&#10003;</span>
       <span class="legend-marker marker-planned"></span>
-      <span class="legend-label">Planned Invitations — awaiting GitHub ID (11)</span>
+      <span class="legend-label">Planned Invitations — awaiting GitHub ID (12)</span>
     </div>
     <div class="legend-hint">Click any layer to toggle visibility · Zoom with +/− or scroll</div>
   `;
