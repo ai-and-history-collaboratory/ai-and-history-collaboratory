@@ -78,8 +78,8 @@
 
 <div class="header">
   <h1>AI + History Collaboratory — Global Membership</h1>
-  <h2>GitHub Organisation Members, Outstanding and Planned Invitations — 23 April 2026</h2>
-  <h3><strong><em>n</em> = 56</strong></h3>
+  <h2>GitHub Organisation Members, Outstanding and Planned Invitations — 30 April 2026</h2>
+  <h3><strong><em>n</em> = 62</strong></h3>
 </div>
 
 <div id="map"></div>
@@ -145,6 +145,8 @@ const membersData = [
   [56.16, 10.21, "Aarhus, Denmark"],
   [49.90, 10.90, "Bavaria, Germany"],
   [52.34, 4.87, "Amsterdam, Netherlands"],
+  [33.78, -84.40, "Atlanta, USA"],
+  [50.82, -0.14, "Brighton, UK"],
 ];
 
 const outstandingData = [
@@ -167,6 +169,11 @@ const plannedData = [
   [41.31, -72.92, "Connecticut, USA"],
   [41.71, -72.24, "Connecticut, USA"],
   [51.76, -1.27, "Oxford, UK"],
+  [51.52, -0.13, "London, UK"],
+  [51.50, -0.12, "London, UK"],
+  [41.32, -72.93, "New Haven, USA"],
+  [33.79, -84.40, "Atlanta, USA"],
+  [33.79, -84.41, "Atlanta, USA"],
 ];
 
 // Custom marker icons — visible marker inside a larger transparent click target
@@ -266,7 +273,7 @@ legend.onAdd = function() {
     <div class="legend-item" id="legend-members" onclick="toggleLayer('members')">
       <span class="legend-checkbox checked">&#10003;</span>
       <span class="legend-marker marker-member"></span>
-      <span class="legend-label">GitHub Organisation Members (40)</span>
+      <span class="legend-label">GitHub Organisation Members (41)</span>
     </div>
     <div class="legend-item" id="legend-outstanding" onclick="toggleLayer('outstanding')">
       <span class="legend-checkbox checked-outstanding">&#10003;</span>
@@ -276,7 +283,7 @@ legend.onAdd = function() {
     <div class="legend-item" id="legend-planned" onclick="toggleLayer('planned')">
       <span class="legend-checkbox checked-planned">&#10003;</span>
       <span class="legend-marker marker-planned"></span>
-      <span class="legend-label">Planned Invitations — awaiting GitHub ID (11)</span>
+      <span class="legend-label">Planned Invitations — awaiting GitHub ID (16)</span>
     </div>
     <div class="legend-hint">Click any layer to toggle visibility · Zoom with +/− or scroll</div>
   `;
