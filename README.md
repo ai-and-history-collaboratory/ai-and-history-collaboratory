@@ -177,7 +177,7 @@ Session materials: [Session plan (PDF)](https://github.com/ai-and-history-collab
 
 ---
 
-### Session 5: Shaping the Historian's Desktop [UPCOMING EVENT]
+### Session 5: Shaping the Historian's Desktop [PAST EVENT]
 
 **Tuesday 5 May 2026** · 4 pm UK · 5 pm CET · 11 am EST · 9 am MT · 8 am PT · Zoom · *90 minutes*
 
